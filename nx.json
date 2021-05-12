@@ -1,8 +1,4 @@
 {
-  "npmScope": "github-jobs",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -10,18 +6,25 @@
     },
     ".eslintrc.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "github-jobs",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "github-jobs": {
+      "tags": []
+    },
+    "github-jobs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["github-jobs"]
+    }
+  }
 }
