@@ -1,9 +1,13 @@
 import styled from 'styled-components'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import {
+  Route,
+  Link,
+  Switch,
+  BrowserRouter as Router,
+} from 'react-router-dom'
 
-import { ReactComponent as Logo } from './logo.svg'
-import star from './star.svg'
 import * as HomePage from './page/home'
+import * as DetailsPage from './page/details'
 
 const StyledApp = styled.div`
   font-family: sans-serif;
@@ -16,7 +20,10 @@ export function App() {
   return (
     <StyledApp>
       <Router>
-        <Route path="/" component={HomePage.View} />
+        <Switch>
+          <Route exact path="/" component={HomePage.View} />
+          <Route path="/details" component={DetailsPage.View} />
+        </Switch>
       </Router>
     </StyledApp>
   )
