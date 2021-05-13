@@ -8,6 +8,7 @@ import {
 
 import * as HomePage from './page/home'
 import * as DetailsPage from './page/details'
+import * as NotFoundPage from './page/404'
 
 const StyledApp = styled.div`
   font-family: sans-serif;
@@ -23,6 +24,7 @@ export function App() {
         <Switch>
           <Route exact path="/" component={HomePage.View} />
           <Route path="/details" component={DetailsPage.View} />
+          <Route path="/*" component={NotFoundPage.View} />
         </Switch>
       </Router>
     </StyledApp>
