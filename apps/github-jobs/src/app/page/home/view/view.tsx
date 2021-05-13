@@ -1,6 +1,6 @@
 import { StyledView } from './view.style'
 
-export interface ViewProps {
+export type ViewProps = {
   id: string
 }
 
