@@ -23,7 +23,7 @@ export function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage.View} />
-          <Route path="/details" component={DetailsPage.View} />
+          <Route path="/details/:id" component={DetailsPage.View} />
           <Route path="/*" component={NotFoundPage.View} />
         </Switch>
       </Router>
