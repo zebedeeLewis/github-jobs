@@ -82,7 +82,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/github-jobs/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/github-jobs/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -117,6 +119,29 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/github-jobs-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "shared-ui-component": {
+      "root": "libs/shared/ui/component",
+      "sourceRoot": "libs/shared/ui/component/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/component/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/component"],
+          "options": {
+            "jestConfig": "libs/shared/ui/component/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

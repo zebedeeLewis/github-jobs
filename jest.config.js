@@ -1,3 +1,6 @@
 module.exports = {
-  projects: ['<rootDir>/apps/github-jobs'],
-};
+  projects: [
+    '<rootDir>/apps/github-jobs',
+    '<rootDir>/libs/shared/ui/component',
+  ],
+}

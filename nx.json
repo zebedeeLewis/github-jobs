@@ -25,6 +25,9 @@
     "github-jobs-e2e": {
       "tags": [],
       "implicitDependencies": ["github-jobs"]
+    },
+    "shared-ui-component": {
+      "tags": []
     }
   }
 }

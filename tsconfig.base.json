@@ -15,8 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-			"@github-jobs/*": ["apps/github-jobs/src/*"]
-		}
+      "@github-jobs/*": ["apps/github-jobs/src/*"],
+      "@shared/ui/component": ["libs/shared/ui/component/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
