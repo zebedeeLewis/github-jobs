@@ -145,6 +145,29 @@
           }
         }
       }
+    },
+    "shared-ui-theme": {
+      "root": "libs/shared/ui/theme",
+      "sourceRoot": "libs/shared/ui/theme/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/theme/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/theme"],
+          "options": {
+            "jestConfig": "libs/shared/ui/theme/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

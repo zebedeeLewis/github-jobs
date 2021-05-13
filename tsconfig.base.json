@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@github-jobs/*": ["apps/github-jobs/src/*"],
-      "@shared/ui/component": ["libs/shared/ui/component/src/index.ts"]
+      "@shared/ui/component": ["libs/shared/ui/component/src/index.ts"],
+      "@shared/ui/theme": ["libs/shared/ui/theme/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
