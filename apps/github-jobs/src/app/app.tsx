@@ -1,24 +1,25 @@
-import styled from 'styled-components'
 import {
   Route,
   Switch,
   BrowserRouter as Router,
 } from 'react-router-dom'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { CssBaseline } from '@material-ui/core'
 
 import { Header } from '@shared/ui/component'
+import * as Theme from '@shared/ui/theme'
 
 import * as HomePage from './page/home'
 import * as DetailsPage from './page/details'
 import * as NotFoundPage from './page/404'
 import Logo from '../assets/image/logo.svg'
 
-const StyledApp = styled.div`
-  color: black;
-`
-
 export function App() {
+  const theme = Theme.setTo(Theme.LIGHT)
+
   return (
-    <StyledApp>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         <Header.View logoSrc={Logo} logoAlt="Logo" />
         <Switch>
@@ -27,7 +28,7 @@ export function App() {
           <Route path="/*" component={NotFoundPage.View} />
         </Switch>
       </Router>
-    </StyledApp>
+    </ThemeProvider>
   )
 }
 

@@ -8,15 +8,15 @@ export type Props = {
   alt: string
 }
 
-export const HeaderComponent = ({src, alt}: Props) => {
-	const classes = useStyles()
+export const HeaderComponent = ({ src, alt }: Props) => {
+  const classes = useStyles()
 
-	return (
-		<AppBar className={classes.root} >
-			<Container>
-				<Logo imgSrc={src} alt={alt} />
-				<ThemeSwitch />
-			</Container>
-		</AppBar>
-	)
+  return (
+    <AppBar className={classes.root}>
+      <Container>
+        <Logo imgSrc={src} alt={alt} />
+        <ThemeSwitch />
+      </Container>
+    </AppBar>
+  )
 }
