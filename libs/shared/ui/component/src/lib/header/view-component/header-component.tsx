@@ -1,4 +1,4 @@
-import { Container, AppBar } from '@material-ui/core'
+import { AppBar, Grid } from '@material-ui/core'
 import { useStyles } from './header-component.style'
 import { View as Logo } from '../../logo'
 import { View as ThemeSwitch } from '../../theme-switch'
@@ -13,10 +13,14 @@ export const HeaderComponent = ({ src, alt }: Props) => {
 
   return (
     <AppBar className={classes.root}>
-      <Container>
-        <Logo imgSrc={src} alt={alt} />
-        <ThemeSwitch />
-      </Container>
+      <Grid container justify="space-between" direction="row">
+        <Grid item>
+          <Logo imgSrc={src} alt={alt} />
+        </Grid>
+        <Grid item>
+          <ThemeSwitch />
+        </Grid>
+      </Grid>
     </AppBar>
   )
 }
