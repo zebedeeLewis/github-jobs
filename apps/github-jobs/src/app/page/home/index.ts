@@ -1,5 +1,5 @@
 import * as Action from './action'
 import * as State from './state'
-import View from './view'
+import { HomePageContainer as View } from './view-container'
 
 export { View, Action, State }
