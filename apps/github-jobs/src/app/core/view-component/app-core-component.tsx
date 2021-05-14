@@ -9,12 +9,12 @@ import { CssBaseline } from '@material-ui/core'
 import { Header } from '@shared/ui/component'
 import * as Theme from '@shared/ui/theme'
 
-import * as HomePage from './page/home'
-import * as DetailsPage from './page/details'
-import * as NotFoundPage from './page/404'
-import Logo from '../assets/image/logo.svg'
+import * as HomePage from '../../page/home'
+import * as DetailsPage from '../../page/details'
+import * as NotFoundPage from '../../page/404'
+import Logo from '../../../assets/image/logo.svg'
 
-export function App() {
+export function AppComponent() {
   const theme = Theme.setTo(Theme.LIGHT)
 
   return (
@@ -31,5 +31,3 @@ export function App() {
     </ThemeProvider>
   )
 }
-
-export default App
