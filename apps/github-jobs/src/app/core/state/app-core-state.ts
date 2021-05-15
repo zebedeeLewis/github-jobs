@@ -19,16 +19,7 @@ export const create = ({
   jobs = [],
 }: Partial<Model>): Model => ({
   themeScheme,
-  jobs: [
-    { id: 'job-1' },
-    { id: 'job-2' },
-    { id: 'job-3' },
-    { id: 'job-4' },
-    { id: 'job-5' },
-    { id: 'job-6' },
-    { id: 'job-7' },
-    { id: 'job-8' },
-  ],
+  jobs: Job.State.sampleJobs,
 })
 
 /**
