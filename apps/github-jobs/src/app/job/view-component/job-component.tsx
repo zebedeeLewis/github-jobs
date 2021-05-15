@@ -8,36 +8,53 @@ import {
 import { Link } from 'react-router-dom'
 
 import { useStyles } from './job-component.style'
-import logo from '../../logo.svg'
 
-export const JobComponent = () => {
+export type Props = {
+  link: string
+  postTime: string
+  jobType: string
+  title: string
+  company: string
+  location: string
+  avatarSrc: string
+}
+
+export const JobComponent = ({
+  link,
+  postTime,
+  jobType,
+  title,
+  company,
+  location,
+  avatarSrc,
+}: Props) => {
   const classes = useStyles()
   return (
-    <Link className={classes.link} to="/details/random-id">
+    <Link className={classes.link} to={link}>
       <Card className={classes.card}>
         <CardContent>
           <Avatar
             className={classes.cardAvatar}
-            src={logo}
+            src={avatarSrc}
             variant="rounded"
           />
           <Box className={classes.timeLine}>
             <Typography color="textSecondary" component="p">
-              5h ago
+              {postTime}
               <Box className={classes.dot} component="span">
                 &bull;
               </Box>
-              Full Time
+              {jobType}
             </Typography>
           </Box>
           <Box className={classes.titleLine}>
             <Typography variant="h6" component="p">
-              Senior Software Engineer
+              {title}
             </Typography>
           </Box>
           <Box className={classes.companyLine}>
             <Typography color="textSecondary" component="p">
-              So Digital Inc.
+              {company}
             </Typography>
           </Box>
           <Box className={classes.locationLine}>
@@ -46,7 +63,7 @@ export const JobComponent = () => {
               className={classes.locationText}
               component="p"
             >
-              Remote, Seoul, Tokyo, Mountain View, San Fransisco
+              {location}
             </Typography>
           </Box>
         </CardContent>
