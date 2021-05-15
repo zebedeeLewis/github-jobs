@@ -12,18 +12,21 @@ import * as Theme from '@shared/ui/theme'
 import * as HomePage from '../../page/home'
 import * as DetailsPage from '../../page/details'
 import * as NotFoundPage from '../../page/404'
+import * as Job from '../../job'
 import Logo from '../../../assets/image/logo.svg'
 
 export type Props = {
   theme: ThemeOptions
   themeSwitchToggled: boolean
   toggleThemeScheme: () => void
+  jobs: Array<Job.State.Model>
 }
 
 export const AppComponent = ({
   theme,
   themeSwitchToggled,
   toggleThemeScheme,
+  jobs,
 }: Props) => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -35,7 +38,11 @@ export const AppComponent = ({
     />
     <Router>
       <Switch>
-        <Route exact path="/" component={HomePage.View} />
+        <Route
+          exact
+          path="/"
+          render={() => <HomePage.View jobs={jobs} />}
+        />
         <Route path="/details/:id" component={DetailsPage.View} />
         <Route path="/*" component={NotFoundPage.View} />
       </Switch>

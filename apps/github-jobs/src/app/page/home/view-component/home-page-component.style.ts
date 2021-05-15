@@ -1,3 +1,9 @@
-import styled from 'styled-components'
+import { makeStyles } from '@material-ui/core/styles'
 
-export const StyledHomePageComponent = styled.div``
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(29),
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+  },
+}))

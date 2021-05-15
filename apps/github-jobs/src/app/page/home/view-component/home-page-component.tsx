@@ -1,7 +1,19 @@
-import { StyledHomePageComponent } from './home-page-component.style'
+import { Paper } from '@material-ui/core'
 
-export const HomePageComponent = () => (
-  <StyledHomePageComponent>
-    <div>THIS IS THE HOME PAGE!!!!</div>
-  </StyledHomePageComponent>
-)
+import * as Job from '../../../job'
+import { useStyles } from './home-page-component.style'
+
+export type Props = {
+  jobs: Array<Job.State.Model>
+}
+
+export const HomePageComponent = ({ jobs }: Props) => {
+  const classes = useStyles()
+  return (
+    <div className={classes.root}>
+      {jobs.map((job) => (
+        <Job.View key={job.id} {...job} />
+      ))}
+    </div>
+  )
+}

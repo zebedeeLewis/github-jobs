@@ -7,9 +7,11 @@ import * as Action from '../action'
 
 export const AppContainer = () => {
   const themeScheme = useSelector(State.getThemeScheme)
+  const jobs = useSelector(State.getJobs)
   const dispatch = useDispatch()
 
   const props = {
+    jobs,
     theme: Theme.setTo(themeScheme),
     themeSwitchToggled: Theme.isLight(themeScheme) ? false : true,
     toggleThemeScheme: () => {

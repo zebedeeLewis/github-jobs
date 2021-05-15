@@ -1,5 +1,10 @@
 import { HomePageComponent } from '../view-component'
+import * as Job from '../../../job'
 
-export const HomePageContainer = () => {
-  return <HomePageComponent />
+export type Props = {
+  jobs: Array<Job.State.Model>
+}
+
+export const HomePageContainer = ({ jobs = [] }: Props) => {
+  return <HomePageComponent jobs={jobs} />
 }
