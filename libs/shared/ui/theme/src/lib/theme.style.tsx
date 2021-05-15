@@ -38,10 +38,10 @@ export const setTo = (themeScheme: ThemeScheme) =>
     palette: {
       type: themeScheme,
       primary: {
-        main: isLight(themeScheme) ? Violet : VeryDarkBlue,
+        main: Violet,
       },
       secondary: {
-        main: isLight(themeScheme) ? LightGray : Gray,
+        main: LightGray,
       },
     },
   })

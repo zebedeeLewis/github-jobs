@@ -1,9 +1,15 @@
 import { FormGroup, Typography, Grid, Switch } from '@material-ui/core'
 import { WbSunny, Brightness3 } from '@material-ui/icons'
 
-import * as theme from '@shared/ui/theme'
+export type Props = {
+  toggled: boolean
+  toggleThemeScheme: () => void
+}
 
-export const ThemeSwitchComponent = () => (
+export const ThemeSwitchComponent = ({
+  toggled,
+  toggleThemeScheme,
+}: Props) => (
   <FormGroup row>
     <Typography component="div">
       <Grid component="label" container alignItems="center" spacing={1}>
@@ -11,7 +17,11 @@ export const ThemeSwitchComponent = () => (
           <WbSunny />
         </Grid>
         <Grid item>
-          <Switch checked name="checkedC" />
+          <Switch
+            checked={toggled}
+            onClick={toggleThemeScheme}
+            name="themeSwitch"
+          />
         </Grid>
         <Grid item>
           <Brightness3 />

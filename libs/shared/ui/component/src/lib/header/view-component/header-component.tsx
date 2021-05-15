@@ -6,9 +6,16 @@ import { View as ThemeSwitch } from '../../theme-switch'
 export type Props = {
   src: string
   alt: string
+  themeSwitchToggled?: boolean
+  toggleThemeScheme: () => void
 }
 
-export const HeaderComponent = ({ src, alt }: Props) => {
+export const HeaderComponent = ({
+  src,
+  alt,
+  themeSwitchToggled,
+  toggleThemeScheme,
+}: Props) => {
   const classes = useStyles()
 
   return (
@@ -18,7 +25,10 @@ export const HeaderComponent = ({ src, alt }: Props) => {
           <Logo imgSrc={src} alt={alt} />
         </Grid>
         <Grid item>
-          <ThemeSwitch />
+          <ThemeSwitch
+            toggleThemeScheme={toggleThemeScheme}
+            toggled={themeSwitchToggled}
+          />
         </Grid>
       </Grid>
     </AppBar>

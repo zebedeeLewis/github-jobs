@@ -1,1 +1,7 @@
-export const Action = 1
+import {
+  createToggleDarkModeOn,
+  createToggleDarkModeOff,
+  update,
+} from './app-core-action'
+
+export { createToggleDarkModeOn, createToggleDarkModeOff, update }

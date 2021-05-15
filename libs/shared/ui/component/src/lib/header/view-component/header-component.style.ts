@@ -5,7 +5,6 @@ const HEADER_TOP_PADDING_PX = 32
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.primary.main,
     paddingTop: theme.spacing(4),
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
