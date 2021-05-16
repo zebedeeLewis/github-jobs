@@ -3,13 +3,10 @@ import { WbSunny, Brightness3 } from '@material-ui/icons'
 
 export type Props = {
   toggled: boolean
-  toggleThemeScheme: () => void
+  onClick: () => void
 }
 
-export const ThemeSwitchComponent = ({
-  toggled,
-  toggleThemeScheme,
-}: Props) => (
+export const ThemeSwitchComponent = ({ toggled, onClick }: Props) => (
   <FormGroup row>
     <Typography component="div">
       <Grid component="label" container alignItems="center" spacing={1}>
@@ -19,7 +16,7 @@ export const ThemeSwitchComponent = ({
         <Grid item>
           <Switch
             checked={toggled}
-            onClick={toggleThemeScheme}
+            onClick={onClick}
             name="themeSwitch"
           />
         </Grid>

@@ -16,23 +16,25 @@ export const AppContainer = () => {
 
   useEffect(() => {
     if (mustLoadNextPage) {
-      Api.getPage(currentPage + 1).then((jobs) =>
+      Api.getPage(currentPage + 1).then(jobs =>
         dispatch(Action.updateJobs(jobs))
       )
     }
   })
 
+  const toggleDarkMode = () => {
+    dispatch(
+      Theme.isLight(themeScheme)
+        ? Action.toggleDarkModeOn()
+        : Action.toggleDarkModeOff()
+    )
+  }
+
   const props = {
     jobs,
     theme: Theme.setTo(themeScheme),
     themeSwitchToggled: Theme.isLight(themeScheme) ? false : true,
-    toggleThemeScheme: () => {
-      dispatch(
-        Theme.isLight(themeScheme)
-          ? Action.toggleDarkModeOn()
-          : Action.toggleDarkModeOff()
-      )
-    },
+    toggleDarkMode,
   }
 
   return <AppComponent {...props} />

@@ -4,21 +4,21 @@ export type Props = {
   logoSrc: string
   logoAlt: string
   themeSwitchToggled: boolean
-  toggleThemeScheme: () => void
+  toggleDarkMode: () => void
 }
 
 export const HeaderContainer = ({
   logoSrc,
   logoAlt,
   themeSwitchToggled,
-  toggleThemeScheme,
+  toggleDarkMode,
 }: Props) => {
   return (
     <HeaderComponent
       src={logoSrc}
       alt={logoAlt}
       themeSwitchToggled={themeSwitchToggled}
-      toggleThemeScheme={toggleThemeScheme}
+      toggleDarkMode={toggleDarkMode}
     />
   )
 }

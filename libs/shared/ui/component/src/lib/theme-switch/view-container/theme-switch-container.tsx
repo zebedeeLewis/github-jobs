@@ -2,17 +2,12 @@ import { ThemeSwitchComponent } from '../view-component'
 
 export type Props = {
   toggled?: boolean
-  toggleThemeScheme: () => void
+  onClick: () => void
 }
 
 export const ThemeSwitchContainer = ({
   toggled = true,
-  toggleThemeScheme,
+  onClick,
 }: Props) => {
-  return (
-    <ThemeSwitchComponent
-      toggleThemeScheme={toggleThemeScheme}
-      toggled={toggled}
-    />
-  )
+  return <ThemeSwitchComponent onClick={onClick} toggled={toggled} />
 }

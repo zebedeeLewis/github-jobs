@@ -7,7 +7,6 @@ import { ThemeProvider, ThemeOptions } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
 
 import { Header } from '@shared/ui/component'
-import * as Theme from '@shared/ui/theme'
 
 import * as HomePage from '../../page/home'
 import * as DetailsPage from '../../page/details'
@@ -18,14 +17,14 @@ import Logo from '../../../assets/image/logo.svg'
 export type Props = {
   theme: ThemeOptions
   themeSwitchToggled: boolean
-  toggleThemeScheme: () => void
+  toggleDarkMode: () => void
   jobs: Array<Job.State.Model>
 }
 
 export const AppComponent = ({
   theme,
   themeSwitchToggled,
-  toggleThemeScheme,
+  toggleDarkMode,
   jobs,
 }: Props) => (
   <ThemeProvider theme={theme}>
@@ -34,7 +33,7 @@ export const AppComponent = ({
       logoSrc={Logo}
       logoAlt="Logo"
       themeSwitchToggled={themeSwitchToggled}
-      toggleThemeScheme={toggleThemeScheme}
+      toggleDarkMode={toggleDarkMode}
     />
     <Router>
       <Switch>
