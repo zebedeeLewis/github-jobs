@@ -3,21 +3,21 @@ import { HeaderComponent } from '../view-component'
 export type Props = {
   logoSrc: string
   logoAlt: string
-  themeSwitchToggled: boolean
+  isDarkModeOn: boolean
   toggleDarkMode: () => void
 }
 
 export const HeaderContainer = ({
   logoSrc,
   logoAlt,
-  themeSwitchToggled,
+  isDarkModeOn,
   toggleDarkMode,
 }: Props) => {
   return (
     <HeaderComponent
       src={logoSrc}
       alt={logoAlt}
-      themeSwitchToggled={themeSwitchToggled}
+      isDarkModeOn={isDarkModeOn}
       toggleDarkMode={toggleDarkMode}
     />
   )

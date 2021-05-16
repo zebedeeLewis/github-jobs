@@ -1,4 +1,5 @@
 import * as Job from '../job'
+import * as App from '../core'
 
 /**
  * Describes the format that the jobs API uses to send data about a
@@ -56,4 +57,20 @@ export const getPage = async (
   currentPage: number
 ): Promise<Array<Job.State.Model>> => {
   return Job.State.sampleJobs
+}
+
+/**
+ * Retrieve the next page to be loaded according to the given app state.
+ *
+ * @param appState - the app state
+ *
+ * @returns a promise wrapping an array of object literals each
+ * containing the data for a single job posting.
+ */
+export const getNextPage = async (
+  appState: App.State.Model
+): Promise<Array<Job.State.Model>> => {
+  const nextPage = App.State.getCurrentPage(appState) + 1
+
+  return getPage(nextPage)
 }

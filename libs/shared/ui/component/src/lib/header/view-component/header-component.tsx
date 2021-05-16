@@ -6,14 +6,14 @@ import { View as ThemeSwitch } from '../../theme-switch'
 export type Props = {
   src: string
   alt: string
-  themeSwitchToggled?: boolean
+  isDarkModeOn?: boolean
   toggleDarkMode: () => void
 }
 
 export const HeaderComponent = ({
   src,
   alt,
-  themeSwitchToggled,
+  isDarkModeOn,
   toggleDarkMode,
 }: Props) => {
   const classes = useStyles()
@@ -27,7 +27,7 @@ export const HeaderComponent = ({
         <Grid item>
           <ThemeSwitch
             onClick={toggleDarkMode}
-            toggled={themeSwitchToggled}
+            isToggledOn={isDarkModeOn}
           />
         </Grid>
       </Grid>

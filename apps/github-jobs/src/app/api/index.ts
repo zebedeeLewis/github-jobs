@@ -1,3 +1,3 @@
-import { getPage } from './api'
+import { getNextPage } from './api'
 
-export { getPage }
+export { getNextPage }

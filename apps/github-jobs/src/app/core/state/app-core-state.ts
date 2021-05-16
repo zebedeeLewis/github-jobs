@@ -1,13 +1,19 @@
-import * as Theme from '@shared/ui/theme'
 import * as Job from '../../job'
 
-export const MUST_LOAD_NEXT_PAGE = true
-export const MUST_NOT_LOAD_NEXT_PAGE = false
 export const NO_PAGE_LOADED = 0
+export const DARK_MODE_ON = true
+export const DARK_MODE_OFF = false
+
+export enum PageLoad {
+  REQUESTED = 'REQUESTED',
+  LOADING = 'LOADING',
+  NONE_LOADED = 'NONE_LOADED',
+  LOADED = 'LOADED',
+}
 
 export interface Model {
-  themeScheme: Theme.ThemeScheme
-  mustLoadNextPage: boolean
+  darkModeToggle: boolean
+  pageLoad: PageLoad
   currentPage: number
   jobs: Array<Job.State.Model>
 }
@@ -21,13 +27,13 @@ export interface Model {
  * @returns A new state model.
  */
 export const create = ({
-  themeScheme = Theme.LIGHT,
-  mustLoadNextPage = MUST_LOAD_NEXT_PAGE,
+  darkModeToggle = DARK_MODE_OFF,
+  pageLoad = PageLoad.NONE_LOADED,
   currentPage = NO_PAGE_LOADED,
   jobs = [],
 }: Partial<Model>): Model => ({
-  themeScheme,
-  mustLoadNextPage,
+  darkModeToggle,
+  pageLoad,
   currentPage,
   jobs,
 })
@@ -61,61 +67,59 @@ export const setCurrentPage: SetCurrentPage = currentPage => model => ({
 })
 
 /**
- * Get the mustLoadNextPage from the given state model.
+ * Get the pageLoad from the given state model.
  *
  * @param model - the state model from which we want to extract the
- * mustLoadNextPage.
+ * pageLoad.
  *
- * @returns The mustLoadNextPage from the given state model.
+ * @returns The pageLoad from the given state model.
  */
-export const getMustLoadNextPage = (model: Model): boolean =>
-  model.mustLoadNextPage
+export const getPageLoad = (model: Model): PageLoad => model.pageLoad
 
 /**
- * Set the mustLoadNextPage value of the given state model.
+ * Set the pageLoad value of the given state model.
  *
- * @param mustLoadNextPage - the new value.
+ * @param pageLoad - the new value.
  *
  * @param model - the state model on which we want to set the
- * mustLoadNextPage value.
+ * pageLoad value.
  *
- * @returns The mustLoadNextPage from the given state model.
+ * @returns The pageLoad from the given state model.
  */
-export type SetMustLoadNextPage = (v: boolean) => (s: Model) => Model
+export type SetPageLoad = (v: PageLoad) => (s: Model) => Model
 
-export const setMustLoadNextPage: SetMustLoadNextPage = mustLoadNextPage => model => ({
+export const setPageLoad: SetPageLoad = pageLoad => model => ({
   ...model,
-  mustLoadNextPage,
+  pageLoad,
 })
 
 /**
- * Get the themeScheme from the given state model.
+ * Get the darkModeToggle from the given state model.
  *
  * @param model - the state model from which we want to extract the
- * themeScheme.
+ * darkModeToggle.
  *
- * @returns The themeScheme from the given state model.
+ * @returns The darkModeToggle from the given state model.
  */
-export const getThemeScheme = (model: Model): Theme.ThemeScheme =>
-  model.themeScheme
+export const getDarkModeToggle = (model: Model): boolean =>
+  model.darkModeToggle
 
 /**
- * Set the theme scheme of the given state model.
+ * Set the dark mode toggle state of the given state model.
  *
- * @param themeScheme - the new value of the theme scheme.
+ * @param darkModeToggle - the new value of the dark mode toggle
+ * state.
  *
  * @param model - the state model on which we want to set the
- * theme scheme.
+ * dark mode toggle state.
  *
- * @returns The themeScheme from the given state model.
+ * @returns The darkModeToggle from the given state model.
  */
-export type SetThemeScheme = (
-  v: Theme.ThemeScheme
-) => (s: Model) => Model
+export type SetDarkModeToggle = (v: boolean) => (s: Model) => Model
 
-export const setThemeScheme: SetThemeScheme = themeScheme => model => ({
+export const setDarkModeToggle: SetDarkModeToggle = darkModeToggle => model => ({
   ...model,
-  themeScheme,
+  darkModeToggle,
 })
 
 /**
@@ -145,3 +149,23 @@ export const setJobs: SetJobs = jobs => model => ({
   ...model,
   jobs,
 })
+
+/**
+ * Determine whether the given states dark mode is toggled on.
+ *
+ * @param model - the state model.
+ * @returns true if the dark mode is on, otherwise returns false.
+ */
+export const isDarkModeOn = (model: Model): boolean =>
+  getDarkModeToggle(model)
+
+/**
+ * Determine is a page should be loaded.
+ *
+ * @param model - the state model.
+ * @returns true if the page load state is "REQUESTED" or "NONE_LOADED".
+ * Otherwise, it returns false.
+ */
+export const isPageLoadNeeded = (model: Model): boolean =>
+  getPageLoad(model) === PageLoad.NONE_LOADED ||
+  getPageLoad(model) === PageLoad.REQUESTED

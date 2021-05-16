@@ -10,7 +10,7 @@ const store = createStore(App.Action.update)
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
-      <App.View />
+      <App.View store={store} />
     </Provider>
   </StrictMode>,
   document.getElementById('root')

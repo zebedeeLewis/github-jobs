@@ -1,29 +1,36 @@
 import {
-  MUST_LOAD_NEXT_PAGE,
-  MUST_NOT_LOAD_NEXT_PAGE,
+  DARK_MODE_ON,
+  DARK_MODE_OFF,
+  PageLoad,
   create,
-  getThemeScheme,
-  setThemeScheme,
-  getMustLoadNextPage,
-  setMustLoadNextPage,
+  getDarkModeToggle,
+  setDarkModeToggle,
+  getPageLoad,
+  setPageLoad,
   getCurrentPage,
   setCurrentPage,
   getJobs,
   setJobs,
+  isDarkModeOn,
+  isPageLoadNeeded,
 } from './app-core-state'
 import type { Model } from './app-core-state'
 
 export {
-  MUST_LOAD_NEXT_PAGE,
-  MUST_NOT_LOAD_NEXT_PAGE,
+  DARK_MODE_ON,
+  DARK_MODE_OFF,
+  PageLoad,
   create,
-  getThemeScheme,
-  setThemeScheme,
-  getMustLoadNextPage,
-  setMustLoadNextPage,
+  getDarkModeToggle,
+  setDarkModeToggle,
+  getPageLoad,
+  setPageLoad,
   getCurrentPage,
   setCurrentPage,
   getJobs,
   setJobs,
+  isDarkModeOn,
+  isPageLoadNeeded,
 }
+
 export type { Model }

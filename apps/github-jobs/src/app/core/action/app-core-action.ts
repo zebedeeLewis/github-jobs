@@ -90,13 +90,13 @@ export const update = (
 
   switch (action.type) {
     case Type.TOGGLE_DARK_MODE_ON:
-      return State.setThemeScheme(Theme.DARK)(state)
+      return State.setDarkModeToggle(State.DARK_MODE_ON)(state)
     case Type.TOGGLE_DARK_MODE_OFF:
-      return State.setThemeScheme(Theme.LIGHT)(state)
+      return State.setDarkModeToggle(State.DARK_MODE_OFF)(state)
     case Type.UPDATE_JOBS:
       return _.compose(
         State.setJobs([...currentJobs, ...action.payload]),
-        State.setMustLoadNextPage(State.MUST_NOT_LOAD_NEXT_PAGE)
+        State.setPageLoad(State.PageLoad.LOADED)
       )(state)
     default:
       return state

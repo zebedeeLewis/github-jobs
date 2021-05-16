@@ -3,6 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { JobComponent } from '../view-component'
 import * as State from '../state'
+import * as DetailsPage from '../../page/details'
 
 const DEFAULT_ID = `${Math.floor(Math.random() * 10) + 1}`
 const DEFAULT_POST_TIME = '2011-10-05T14:48:00.000Z'
@@ -32,7 +33,7 @@ export const JobContainer = ({
     avatarSrc,
     postTime: displayedPostTime,
     jobType: displayedJobType,
-    link: `/details/${id}`,
+    link: DetailsPage.pathFromId(id),
   }
 
   return <JobComponent {...props} />

@@ -1,39 +1,39 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { Store as ReduxStore } from 'redux'
+import { useSelector } from 'react-redux'
 
-import * as Theme from '@shared/ui/theme'
 import { AppComponent } from '../view-component'
 import * as State from '../state'
 import * as Action from '../action'
 import * as Api from '../../api'
 
-export const AppContainer = () => {
-  const dispatch = useDispatch()
-  const themeScheme = useSelector(State.getThemeScheme)
-  const jobs = useSelector(State.getJobs)
-  const mustLoadNextPage = useSelector(State.getMustLoadNextPage)
-  const currentPage = useSelector(State.getCurrentPage)
+export type Props = {
+  store: ReduxStore
+}
+
+export const AppContainer = ({ store }: Props) => {
+  const state = store.getState()
+
+  const updateJobs = jobs => store.dispatch(Action.updateJobs(jobs))
 
   useEffect(() => {
-    if (mustLoadNextPage) {
-      Api.getPage(currentPage + 1).then(jobs =>
-        dispatch(Action.updateJobs(jobs))
-      )
+    if (State.isPageLoadNeeded(state)) {
+      Api.getNextPage(state).then(updateJobs)
     }
   })
 
   const toggleDarkMode = () => {
-    dispatch(
-      Theme.isLight(themeScheme)
-        ? Action.toggleDarkModeOn()
-        : Action.toggleDarkModeOff()
+    store.dispatch(
+      State.isDarkModeOn(state)
+        ? Action.toggleDarkModeOff()
+        : Action.toggleDarkModeOn()
     )
   }
 
+  const jobs = useSelector(State.getJobs)
   const props = {
     jobs,
-    theme: Theme.setTo(themeScheme),
-    themeSwitchToggled: Theme.isLight(themeScheme) ? false : true,
+    isDarkModeOn: State.isDarkModeOn(state),
     toggleDarkMode,
   }
 
