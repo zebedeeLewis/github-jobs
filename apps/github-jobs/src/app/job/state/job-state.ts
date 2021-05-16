@@ -302,4 +302,4 @@ export const sampleJobs = [
     location: 'Toronto, Ontario - Remote',
     avatarSrc: logo,
   }),
-]
+] as Array<Model>
