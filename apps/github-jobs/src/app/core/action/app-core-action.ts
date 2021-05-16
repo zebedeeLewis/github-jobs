@@ -1,12 +1,16 @@
+import * as _ from 'underscore'
+
 import * as State from '../state'
+import * as Job from '../../job'
 import * as Theme from '@shared/ui/theme'
 
 /**
  * Represents all supported redux action type.
  */
 export enum Type {
-  ToggleDarkModeOn = 'ToggleDarkModeOn',
-  ToggleDarkModeOff = 'ToggleDarkModeOff',
+  TOGGLE_DARK_MODE_ON = 'TOGGLE_DARK_MODE_ON',
+  TOGGLE_DARK_MODE_OFF = 'TOGGLE_DARK_MODE_OFF',
+  UPDATE_JOBS = 'UPDATE_JOBS',
 }
 
 /**
@@ -14,7 +18,7 @@ export enum Type {
  * app.
  */
 export interface ToggleDarkModeOn {
-  type: Type.ToggleDarkModeOn
+  type: Type.TOGGLE_DARK_MODE_ON
 }
 
 /**
@@ -22,21 +26,30 @@ export interface ToggleDarkModeOn {
  * app.
  */
 export interface ToggleDarkModeOff {
-  type: Type.ToggleDarkModeOff
+  type: Type.TOGGLE_DARK_MODE_OFF
+}
+
+/**
+ * Describes a redux action intended to trigger the update of the
+ * states jobs attribute with the given payload.
+ */
+export interface UpdateJobs {
+  type: Type.UPDATE_JOBS
+  payload: Array<Job.State.Model>
 }
 
 /**
  * Represents the valid redux actions for the application state.
  */
-export type Model = ToggleDarkModeOn | ToggleDarkModeOff
+export type Model = ToggleDarkModeOn | ToggleDarkModeOff | UpdateJobs
 
 /**
  * Create a new ToggleDarkModeOn action
  *
  * @returns A new ToggleDarkModeOn action.
  */
-export const createToggleDarkModeOn = (): ToggleDarkModeOn => ({
-  type: Type.ToggleDarkModeOn,
+export const toggleDarkModeOn = (): ToggleDarkModeOn => ({
+  type: Type.TOGGLE_DARK_MODE_ON,
 })
 
 /**
@@ -44,8 +57,21 @@ export const createToggleDarkModeOn = (): ToggleDarkModeOn => ({
  *
  * @returns A new ToggleDarkModeOff action.
  */
-export const createToggleDarkModeOff = (): ToggleDarkModeOff => ({
-  type: Type.ToggleDarkModeOff,
+export const toggleDarkModeOff = (): ToggleDarkModeOff => ({
+  type: Type.TOGGLE_DARK_MODE_OFF,
+})
+
+/**
+ * Create a new UpdateJobs action
+ *
+ * @returns A new UpdateJobs action with the given array of jobs
+ * as the payload.
+ */
+export const updateJobs = (
+  jobs: Array<Job.State.Model>
+): UpdateJobs => ({
+  type: Type.UPDATE_JOBS,
+  payload: jobs,
 })
 
 /**
@@ -60,11 +86,18 @@ export const update = (
   state: State.Model = State.create({}),
   action: Model
 ): State.Model => {
+  const currentJobs = State.getJobs(state)
+
   switch (action.type) {
-    case Type.ToggleDarkModeOn:
-      return State.setThemeScheme(state, Theme.DARK)
-    case Type.ToggleDarkModeOff:
-      return State.setThemeScheme(state, Theme.LIGHT)
+    case Type.TOGGLE_DARK_MODE_ON:
+      return State.setThemeScheme(Theme.DARK)(state)
+    case Type.TOGGLE_DARK_MODE_OFF:
+      return State.setThemeScheme(Theme.LIGHT)(state)
+    case Type.UPDATE_JOBS:
+      return _.compose(
+        State.setJobs([...currentJobs, ...action.payload]),
+        State.setMustLoadNextPage(State.MUST_NOT_LOAD_NEXT_PAGE)
+      )(state)
     default:
       return state
   }

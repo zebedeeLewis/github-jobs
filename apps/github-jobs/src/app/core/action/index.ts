@@ -1,7 +1,8 @@
 import {
-  createToggleDarkModeOn,
-  createToggleDarkModeOff,
+  toggleDarkModeOn,
+  toggleDarkModeOff,
+  updateJobs,
   update,
 } from './app-core-action'
 
-export { createToggleDarkModeOn, createToggleDarkModeOff, update }
+export { toggleDarkModeOn, toggleDarkModeOff, updateJobs, update }
