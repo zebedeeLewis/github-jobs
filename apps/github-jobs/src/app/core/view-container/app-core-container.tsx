@@ -1,37 +1,48 @@
 import { useEffect } from 'react'
-import { useSelector, useDispatch, useStore } from 'react-redux'
+import {
+  useSelector,
+  useDispatch,
+  useStore,
+  connect,
+} from 'react-redux'
 
 import { AppComponent } from '../view-component'
 import * as State from '../state'
 import * as Action from '../action'
 import * as Api from '../../api'
 
-export const AppContainer = () => {
-  const store = useStore()
-  const state = store.getState()
-  const dispatch = useDispatch()
+type Props = {
+  state: State.Model
+}
 
+const stateToProps = state => ({
+  state,
+})
+
+const LocalAppContainer = ({ state }: Props) => {
+  const dispatch = useDispatch()
   const updateJobs = jobs => dispatch(Action.updateJobs(jobs))
 
   useEffect(() => {
-    if (State.isPageLoadNeeded(state)) {
+    if (State.isLoadNeeded(state)) {
       Api.getNextPage(state).then(updateJobs)
     }
   })
 
-  const toggleDarkMode = () => {
-    dispatch(
-      State.isDarkModeOn(state)
-        ? Action.toggleDarkModeOff()
-        : Action.toggleDarkModeOn()
-    )
-  }
-
   const props = {
-    jobs: useSelector(State.getJobs),
-    isDarkModeOn: useSelector(State.getDarkModeToggle),
-    toggleDarkMode,
+    toggleDarkMode: () =>
+      dispatch(
+        State.isDarkModeOn(state)
+          ? Action.toggleDarkModeOff()
+          : Action.toggleDarkModeOn()
+      ),
+    loadNextPage: () => dispatch(Action.loadNextPage()),
+    jobs: state.jobs,
+    isDarkModeOn: State.isDarkModeOn(state),
+    isLoadingJobs: State.isLoadingJobs(state),
   }
 
   return <AppComponent {...props} />
 }
+
+export const AppContainer = connect(stateToProps)(LocalAppContainer)

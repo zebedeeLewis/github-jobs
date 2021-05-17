@@ -160,12 +160,22 @@ export const isDarkModeOn = (model: Model): boolean =>
   getDarkModeToggle(model)
 
 /**
- * Determine is a page should be loaded.
+ * Determine if a page should be loaded.
  *
  * @param model - the state model.
  * @returns true if the page load state is "REQUESTED" or "NONE_LOADED".
  * Otherwise, it returns false.
  */
-export const isPageLoadNeeded = (model: Model): boolean =>
+export const isLoadNeeded = (model: Model): boolean =>
   getPageLoad(model) === PageLoad.NONE_LOADED ||
+  getPageLoad(model) === PageLoad.REQUESTED
+
+/**
+ * Determine if jobs are currently being loaded from the api.
+ *
+ * @param model - the state model.
+ * @returns true if the page load state is "LOADING". Otherwise, it
+ * returns false.
+ */
+export const isLoadingJobs = (model: Model): boolean =>
   getPageLoad(model) === PageLoad.REQUESTED

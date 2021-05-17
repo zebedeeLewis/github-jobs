@@ -5,7 +5,13 @@ import { Provider } from 'react-redux'
 
 import { App } from './app'
 
-const store = createStore(App.Action.update)
+/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  App.Action.update,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+)
+/* eslint-enable */
 
 ReactDOM.render(
   <StrictMode>

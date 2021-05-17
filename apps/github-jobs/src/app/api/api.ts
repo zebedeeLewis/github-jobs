@@ -56,7 +56,11 @@ export const dtoToJob = ({
 export const getPage = async (
   currentPage: number
 ): Promise<Array<Job.State.Model>> => {
-  return Job.State.sampleJobs
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Job.State.sampleJobs)
+    }, 5000)
+  })
 }
 
 /**

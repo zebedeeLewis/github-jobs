@@ -1,4 +1,4 @@
-import { AppBar, Grid } from '@material-ui/core'
+import { AppBar, Grid, Container } from '@material-ui/core'
 import { useStyles } from './header-component.style'
 import { View as Logo } from '../../logo'
 import { View as ThemeSwitch } from '../../theme-switch'
@@ -20,17 +20,19 @@ export const HeaderComponent = ({
 
   return (
     <AppBar className={classes.root}>
-      <Grid container justify="space-between" direction="row">
-        <Grid item>
-          <Logo imgSrc={src} alt={alt} />
+      <Container>
+        <Grid container justify="space-between" direction="row">
+          <Grid item>
+            <Logo imgSrc={src} alt={alt} />
+          </Grid>
+          <Grid item>
+            <ThemeSwitch
+              onClick={toggleDarkMode}
+              isToggledOn={isDarkModeOn}
+            />
+          </Grid>
         </Grid>
-        <Grid item>
-          <ThemeSwitch
-            onClick={toggleDarkMode}
-            isToggledOn={isDarkModeOn}
-          />
-        </Grid>
-      </Grid>
+      </Container>
     </AppBar>
   )
 }

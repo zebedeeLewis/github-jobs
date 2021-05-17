@@ -11,6 +11,15 @@ export enum Type {
   TOGGLE_DARK_MODE_ON = 'TOGGLE_DARK_MODE_ON',
   TOGGLE_DARK_MODE_OFF = 'TOGGLE_DARK_MODE_OFF',
   UPDATE_JOBS = 'UPDATE_JOBS',
+  LOAD_NEXT_PAGE = 'LOAD_NEXT_PAGE',
+}
+
+/**
+ * Describes a redux action intended to load a new page from the
+ * api
+ */
+export interface LoadNextPage {
+  type: Type.LOAD_NEXT_PAGE
 }
 
 /**
@@ -41,7 +50,20 @@ export interface UpdateJobs {
 /**
  * Represents the valid redux actions for the application state.
  */
-export type Model = ToggleDarkModeOn | ToggleDarkModeOff | UpdateJobs
+export type Model =
+  | ToggleDarkModeOn
+  | ToggleDarkModeOff
+  | UpdateJobs
+  | LoadNextPage
+
+/**
+ * Create a new LoadNextPage action
+ *
+ * @returns A new LoadNextPage action.
+ */
+export const loadNextPage = (): LoadNextPage => ({
+  type: Type.LOAD_NEXT_PAGE,
+})
 
 /**
  * Create a new ToggleDarkModeOn action
@@ -98,6 +120,8 @@ export const update = (
         State.setJobs([...currentJobs, ...action.payload]),
         State.setPageLoad(State.PageLoad.LOADED)
       )(state)
+    case Type.LOAD_NEXT_PAGE:
+      return State.setPageLoad(State.PageLoad.REQUESTED)(state)
     default:
       return state
   }

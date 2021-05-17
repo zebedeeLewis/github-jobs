@@ -12,7 +12,8 @@ import {
   getJobs,
   setJobs,
   isDarkModeOn,
-  isPageLoadNeeded,
+  isLoadNeeded,
+  isLoadingJobs,
 } from './app-core-state'
 import type { Model } from './app-core-state'
 
@@ -30,7 +31,8 @@ export {
   getJobs,
   setJobs,
   isDarkModeOn,
-  isPageLoadNeeded,
+  isLoadNeeded,
+  isLoadingJobs,
 }
 
 export type { Model }
