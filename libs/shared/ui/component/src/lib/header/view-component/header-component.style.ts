@@ -6,4 +6,9 @@ export const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     minHeight: theme.spacing(17),
   },
+  filter: {
+    width: '100%',
+    transform: `translateY(${theme.spacing(3)}px)`,
+    boxShadow: theme.shadows[3],
+  },
 }))

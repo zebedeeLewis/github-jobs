@@ -1,4 +1,5 @@
 import { AppBar, Grid, Container } from '@material-ui/core'
+import { View as FilterInput } from '../../filter-input'
 import { useStyles } from './header-component.style'
 import { View as Logo } from '../../logo'
 import { View as ThemeSwitch } from '../../theme-switch'
@@ -30,6 +31,9 @@ export const HeaderComponent = ({
               onClick={toggleDarkMode}
               isToggledOn={isDarkModeOn}
             />
+          </Grid>
+          <Grid className={classes.filter} item>
+            <FilterInput />
           </Grid>
         </Grid>
       </Container>

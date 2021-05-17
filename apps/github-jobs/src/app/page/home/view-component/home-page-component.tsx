@@ -1,5 +1,3 @@
-import { Paper } from '@material-ui/core'
-
 import { LoadButton } from '@shared/ui/component'
 import * as Job from '../../../job'
 import { useStyles } from './home-page-component.style'
