@@ -3,7 +3,7 @@ import {
   Switch,
   BrowserRouter as Router,
 } from 'react-router-dom'
-import { ThemeProvider, ThemeOptions } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline, Container } from '@material-ui/core'
 
 import * as Theme from '@shared/ui/theme'
@@ -16,12 +16,20 @@ import * as Job from '../../job'
 import { useStyles } from './app-core-component.style'
 import logo from '../../../assets/image/logo.svg'
 
+type Filters = {
+  fullTimeOnly: boolean
+  location: string
+  title: string
+}
+
 export type Props = {
   isDarkModeOn: boolean
   toggleDarkMode: () => void
   jobs: Array<Job.State.Model>
   isLoadingJobs: boolean
   loadNextPage: () => void
+  applyFilters: () => void
+  updateFilters: (f: Filters) => void
 }
 
 export const AppComponent = ({
@@ -30,10 +38,14 @@ export const AppComponent = ({
   jobs,
   isLoadingJobs,
   loadNextPage,
+  applyFilters,
+  updateFilters,
 }: Props) => {
   const theme = Theme.setTo(isDarkModeOn ? Theme.DARK : Theme.LIGHT)
   const classes = useStyles()
   const headerProps = {
+    applyFilters,
+    updateFilters,
     isDarkModeOn,
     toggleDarkMode,
     logoSrc: logo,

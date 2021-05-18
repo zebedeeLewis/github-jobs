@@ -11,11 +11,18 @@ export enum PageLoad {
   LOADED = 'LOADED',
 }
 
+type Filters = {
+  fullTimeOnly: boolean
+  location: string
+  title: string
+}
+
 export interface Model {
   darkModeToggle: boolean
   pageLoad: PageLoad
   currentPage: number
   jobs: Array<Job.State.Model>
+  filters: Filters
 }
 
 /**
@@ -31,11 +38,44 @@ export const create = ({
   pageLoad = PageLoad.NONE_LOADED,
   currentPage = NO_PAGE_LOADED,
   jobs = [],
+  filters = {
+    fullTimeOnly: false,
+    location: '',
+    title: '',
+  },
 }: Partial<Model>): Model => ({
   darkModeToggle,
   pageLoad,
   currentPage,
   jobs,
+  filters,
+})
+
+/**
+ * Get the filters from the given state model.
+ *
+ * @param model - the state model from which we want to extract the
+ * filters.
+ *
+ * @returns The filters from the given state model.
+ */
+export const getFilters = (model: Model): Filters => model.filters
+
+/**
+ * Set the filters value of the given state model.
+ *
+ * @param filters - the new value.
+ *
+ * @param model - the state model on which we want to set the
+ * filters value.
+ *
+ * @returns The filters from the given state model.
+ */
+export type SetFilters = (v: Filters) => (s: Model) => Model
+
+export const setFilters: SetFilters = filters => model => ({
+  ...model,
+  filters,
 })
 
 /**

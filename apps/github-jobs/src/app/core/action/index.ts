@@ -2,6 +2,8 @@ import {
   toggleDarkModeOn,
   toggleDarkModeOff,
   loadNextPage,
+  updateFilters,
+  applyFilters,
   updateJobs,
   update,
 } from './app-core-action'
@@ -9,6 +11,8 @@ import {
 export {
   toggleDarkModeOn,
   toggleDarkModeOff,
+  updateFilters,
+  applyFilters,
   loadNextPage,
   updateJobs,
   update,

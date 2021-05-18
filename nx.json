@@ -31,6 +31,12 @@
     },
     "shared-ui-theme": {
       "tags": []
+    },
+    "use-case-filter-jobs": {
+      "tags": []
+    },
+    "domain-jobs": {
+      "tags": []
     }
   }
 }

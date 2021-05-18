@@ -4,6 +4,12 @@ import * as State from '../state'
 import * as Job from '../../job'
 import * as Theme from '@shared/ui/theme'
 
+type Filters = {
+  fullTimeOnly: boolean
+  location: string
+  title: string
+}
+
 /**
  * Represents all supported redux action type.
  */
@@ -12,6 +18,23 @@ export enum Type {
   TOGGLE_DARK_MODE_OFF = 'TOGGLE_DARK_MODE_OFF',
   UPDATE_JOBS = 'UPDATE_JOBS',
   LOAD_NEXT_PAGE = 'LOAD_NEXT_PAGE',
+  UPDATE_FILTERS = 'UPDATE_FILTERS',
+  APPLY_FILTERS = 'APPLY_FILTERS',
+}
+
+/**
+ * Describes a redux action intended to apply the active filters
+ */
+export interface ApplyFilters {
+  type: Type.APPLY_FILTERS
+}
+
+/**
+ * Describes a redux action intended to update the active filters
+ */
+export interface UpdateFilters {
+  type: Type.UPDATE_FILTERS
+  payload: Filters
 }
 
 /**
@@ -55,6 +78,8 @@ export type Model =
   | ToggleDarkModeOff
   | UpdateJobs
   | LoadNextPage
+  | UpdateFilters
+  | ApplyFilters
 
 /**
  * Create a new LoadNextPage action
@@ -97,6 +122,25 @@ export const updateJobs = (
 })
 
 /**
+ * Create a new UpdateFilters action
+ *
+ * @returns A new UpdateFilters action with the given Filters
+ */
+export const updateFilters = (filters: Filters): UpdateFilters => ({
+  type: Type.UPDATE_FILTERS,
+  payload: filters,
+})
+
+/**
+ * Create a new ApplyFilters action
+ *
+ * @returns A new ApplyFilters action
+ */
+export const applyFilters = (): ApplyFilters => ({
+  type: Type.APPLY_FILTERS,
+})
+
+/**
  * Updates the given state according to the given action.
  *
  * @param state - the current state of the app
@@ -109,6 +153,7 @@ export const update = (
   action: Model
 ): State.Model => {
   const currentJobs = State.getJobs(state)
+  const currentFilters = State.getFilters(state)
 
   switch (action.type) {
     case Type.TOGGLE_DARK_MODE_ON:
@@ -122,6 +167,15 @@ export const update = (
       )(state)
     case Type.LOAD_NEXT_PAGE:
       return State.setPageLoad(State.PageLoad.REQUESTED)(state)
+    case Type.UPDATE_FILTERS:
+      return State.setFilters({ ...currentFilters, ...action.payload })(
+        state
+      )
+    case Type.APPLY_FILTERS:
+      return _.compose(
+        State.setCurrentPage(0),
+        State.setPageLoad(State.PageLoad.REQUESTED)
+      )(state)
     default:
       return state
   }

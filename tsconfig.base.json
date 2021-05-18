@@ -17,7 +17,11 @@
     "paths": {
       "@github-jobs/*": ["apps/github-jobs/src/*"],
       "@shared/ui/component": ["libs/shared/ui/component/src/index.ts"],
-      "@shared/ui/theme": ["libs/shared/ui/theme/src/index.ts"]
+      "@shared/ui/theme": ["libs/shared/ui/theme/src/index.ts"],
+      "@libs/use-case/filter-jobs": [
+        "libs/use-case/filter-jobs/src/index.ts"
+      ],
+      "@libs/domain/job": ["libs/domain/jobs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
