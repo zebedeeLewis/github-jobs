@@ -1,15 +1,27 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles(theme => ({
+  container: {
+    maxWidth: theme.spacing(56),
+    width: '100%',
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    [theme.breakpoints.up('sm')]: {
+      width: '50%',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      width: '33.333333%',
+    },
+  },
+
   link: {
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(6),
     display: 'block',
     textDecoration: 'none',
   },
 
   card: {
-    minHeight: theme.spacing(28.5),
+    minHeight: theme.spacing(32),
     overflow: 'visible',
     padding: theme.spacing(2),
   },

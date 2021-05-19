@@ -34,7 +34,12 @@ export const HeaderComponent = ({
   return (
     <AppBar className={classes.root}>
       <Container>
-        <Grid container justify="space-between" direction="row">
+        <Grid
+          container
+          className={classes.gridContainer}
+          justify="space-between"
+          direction="row"
+        >
           <Grid item>
             <Logo imgSrc={src} alt={alt} />
           </Grid>

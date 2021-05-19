@@ -1,5 +1,6 @@
 import {
   Box,
+  Grid,
   Avatar,
   Typography,
   Card,
@@ -30,44 +31,46 @@ export const JobComponent = ({
 }: Props) => {
   const classes = useStyles()
   return (
-    <Link className={classes.link} to={link}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Avatar
-            className={classes.cardAvatar}
-            src={avatarSrc}
-            variant="rounded"
-          />
-          <Box className={classes.timeLine}>
-            <Typography color="textSecondary" component="p">
-              {postTime}
-              <Box className={classes.dot} component="span">
-                &bull;
-              </Box>
-              {jobType}
-            </Typography>
-          </Box>
-          <Box className={classes.titleLine}>
-            <Typography variant="h6" component="p">
-              {title}
-            </Typography>
-          </Box>
-          <Box className={classes.companyLine}>
-            <Typography color="textSecondary" component="p">
-              {company}
-            </Typography>
-          </Box>
-          <Box className={classes.locationLine}>
-            <Typography
-              color="primary"
-              className={classes.locationText}
-              component="p"
-            >
-              {location}
-            </Typography>
-          </Box>
-        </CardContent>
-      </Card>
-    </Link>
+    <Grid item className={classes.container}>
+      <Link className={classes.link} to={link}>
+        <Card className={classes.card}>
+          <CardContent>
+            <Avatar
+              className={classes.cardAvatar}
+              src={avatarSrc}
+              variant="rounded"
+            />
+            <Box className={classes.timeLine}>
+              <Typography color="textSecondary" component="p">
+                {postTime}
+                <Box className={classes.dot} component="span">
+                  &bull;
+                </Box>
+                {jobType}
+              </Typography>
+            </Box>
+            <Box className={classes.titleLine}>
+              <Typography variant="h6" component="p">
+                {title}
+              </Typography>
+            </Box>
+            <Box className={classes.companyLine}>
+              <Typography color="textSecondary" component="p">
+                {company}
+              </Typography>
+            </Box>
+            <Box className={classes.locationLine}>
+              <Typography
+                color="primary"
+                className={classes.locationText}
+                component="p"
+              >
+                {location}
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Link>
+    </Grid>
   )
 }
