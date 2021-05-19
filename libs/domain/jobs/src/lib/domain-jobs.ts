@@ -1,23 +1,70 @@
 import logo from './logo.svg'
 
+/**
+ * What type of job. Is this a full time or part time job.
+ */
 export enum JobType {
   FULL_TIME = 'fullTime',
   PART_TIME = 'partTime',
 }
 
 /**
+ * Represents a single job posting.
+ *
  * @remarks
  * Use the long name "jobType" instead of just "type" (which would be
  * more concise and would read better when a model instance is used)
  * to prevent clash with TypeScript reserved word "type"
  */
 export interface Model {
+  /** Jobs unique identifier */
   id: string
+
+  /**
+   * The time the job was posted. This should be in ISO-8601 format.
+   */
   postTime: string
+
+  /**
+   * The job type can be either "full time" (JobType.FULL_TIME) or
+   *  "part time" (JobType.PART_TIME).
+   */
   jobType: JobType
+
+  /**
+   * The job title
+   */
   title: string
+
+  /**
+   * The posting company name.
+   */
   company: string
+
+  /**
+   * The url to the posting companys website.
+   */
+  companyUrl: string
+
+  /**
+   * The location of the job opportunity.
+   */
   location: string
+
+  /**
+   * The job description holds details about the job opportunity, This
+   * field holds HTML values.
+   */
+  description: string
+
+  /**
+   * Details on how to apply to the job. This field holds HTML values.
+   */
+  howToApply: string
+
+  /**
+   * The url to the company logo.
+   */
   avatarSrc: string
 }
 
@@ -36,7 +83,10 @@ export const create = ({
   jobType,
   title,
   company,
+  companyUrl,
   location,
+  description,
+  howToApply,
   avatarSrc,
 }: Model): Model =>
   Object.freeze({
@@ -45,8 +95,96 @@ export const create = ({
     jobType,
     title,
     company,
+    companyUrl,
     location,
+    description,
+    howToApply,
     avatarSrc,
+  })
+
+/**
+ * Get the howToApply from the given job model.
+ *
+ * @param model - the job model from which we want to extract the
+ * howToApply.
+ *
+ * @returns The howToApply of the given job model.
+ */
+export const getHowToApply = (model: Model): string => model.howToApply
+
+/**
+ * Set the howToApply of the given job model.
+ *
+ * @remarks This function is curried
+ *
+ * @param model - the job model on which we want to set the howToApply.
+ * @param howToApply - the new howToApply value
+ *
+ * @returns A new immutable job model where the "howToApply" attribute
+ * is set to the given value.
+ */
+export type SetHowToApply = (v: string) => (m: Model) => Model
+export const setHowToApply: SetHowToApply = howToApply => model =>
+  create({
+    ...model,
+    howToApply,
+  })
+
+/**
+ * Get the description from the given job model.
+ *
+ * @param model - the job model from which we want to extract the
+ * description.
+ *
+ * @returns The description of the given job model.
+ */
+export const getDescription = (model: Model): string =>
+  model.description
+
+/**
+ * Set the description of the given job model.
+ *
+ * @remarks This function is curried
+ *
+ * @param model - the job model on which we want to set the description.
+ * @param description - the new description value
+ *
+ * @returns A new immutable job model where the "description" attribute
+ * is set to the given value.
+ */
+export type SetDescription = (v: string) => (m: Model) => Model
+export const setDescription: SetDescription = description => model =>
+  create({
+    ...model,
+    description,
+  })
+
+/**
+ * Get the companyUrl from the given job model.
+ *
+ * @param model - the job model from which we want to extract the
+ * companyUrl.
+ *
+ * @returns The companyUrl of the given job model.
+ */
+export const getCompanyUrl = (model: Model): string => model.companyUrl
+
+/**
+ * Set the companyUrl of the given job model.
+ *
+ * @remarks This function is curried
+ *
+ * @param model - the job model on which we want to set the companyUrl.
+ * @param companyUrl - the new companyUrl value
+ *
+ * @returns A new immutable job model where the "companyUrl" attribute
+ * is set to the given value.
+ */
+export type SetCompanyUrl = (v: string) => (m: Model) => Model
+export const setCompanyUrl: SetCompanyUrl = companyUrl => model =>
+  create({
+    ...model,
+    companyUrl,
   })
 
 /**
@@ -244,78 +382,3 @@ export const setId: SetId = id => model =>
     ...model,
     id,
   })
-
-export const sampleJobs = [
-  create({
-    id: 'job-1',
-    title: 'Senior Software Engineer',
-    company: 'So Digital Inc.',
-    jobType: JobType.FULL_TIME,
-    postTime: '2021-05-15T12:36:00.000Z',
-    location: 'Remote, Seoul, Tokyo, Mountain View, San Fransisco',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-2',
-    title: 'Haskell and PureScript Dev',
-    company: 'National Wildlife',
-    jobType: JobType.PART_TIME,
-    postTime: '2021-01-05T14:48:00.000Z',
-    location: 'Columbus, OH',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-3',
-    title: 'Midlevel Back End Engineer',
-    company: 'Photosnap Ltd.',
-    jobType: JobType.PART_TIME,
-    postTime: '2011-10-05T14:48:00.000Z',
-    location: 'Russia',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-4',
-    title: 'Senior Application Engineer',
-    company: 'Extreme Division',
-    jobType: JobType.FULL_TIME,
-    postTime: '2011-10-05T14:48:00.000Z',
-    location: 'Anywhere',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-5',
-    title: 'Remote DevOps Engineer',
-    company: 'Multifold',
-    jobType: JobType.PART_TIME,
-    postTime: '2011-10-05T14:48:00.000Z',
-    location: 'Berlin',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-6',
-    title: 'Desktop Support Manager',
-    company: 'Hardsoft Computing',
-    jobType: JobType.PART_TIME,
-    postTime: '2011-10-05T14:48:00.000Z',
-    location: 'Columbus, OH',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-7',
-    title: 'iOS Engineer',
-    company: 'Blacksoft',
-    jobType: JobType.FULL_TIME,
-    postTime: '2011-10-05T14:48:00.000Z',
-    location: 'Columbus, OH',
-    avatarSrc: logo,
-  }),
-  create({
-    id: 'job-8',
-    title: 'Senior EJB Developer',
-    company: 'Color Logic',
-    jobType: JobType.FULL_TIME,
-    postTime: '2011-10-05T14:48:00.000Z',
-    location: 'Toronto, Ontario - Remote',
-    avatarSrc: logo,
-  }),
-] as Array<Model>

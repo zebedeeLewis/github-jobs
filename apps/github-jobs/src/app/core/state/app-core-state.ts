@@ -1,4 +1,4 @@
-import * as Job from '../../job'
+import * as Job from '@libs/domain/job'
 
 export const NO_PAGE_LOADED = 0
 export const DARK_MODE_ON = true
@@ -21,7 +21,7 @@ export interface Model {
   darkModeToggle: boolean
   pageLoad: PageLoad
   currentPage: number
-  jobs: Array<Job.State.Model>
+  jobs: Array<Job.Model>
   filters: Filters
 }
 
@@ -170,8 +170,7 @@ export const setDarkModeToggle: SetDarkModeToggle = darkModeToggle => model => (
  *
  * @returns The jobs array from the given state model.
  */
-export const getJobs = (model: Model): Array<Job.State.Model> =>
-  model.jobs
+export const getJobs = (model: Model): Array<Job.Model> => model.jobs
 
 /**
  * Set the jobs array of the given state model.
@@ -183,7 +182,7 @@ export const getJobs = (model: Model): Array<Job.State.Model> =>
  *
  * @returns The jobs array from the given state model.
  */
-export type SetJobs = (v: Array<Job.State.Model>) => (s: Model) => Model
+export type SetJobs = (v: Array<Job.Model>) => (s: Model) => Model
 
 export const setJobs: SetJobs = jobs => model => ({
   ...model,

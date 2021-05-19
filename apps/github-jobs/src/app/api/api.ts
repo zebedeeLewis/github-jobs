@@ -1,4 +1,4 @@
-import * as Job from '../job'
+import * as Job from '@libs/domain/job'
 import * as App from '../core'
 
 /**
@@ -20,32 +20,6 @@ export interface DTO {
 }
 
 /**
- * Maps an api DTO to a jobs model.
- */
-export const dtoToJob = ({
-  id,
-  type,
-  created_at,
-  company,
-  company_logo,
-  location,
-  title,
-}: DTO): Job.State.Model => {
-  return {
-    id,
-    title,
-    company,
-    location,
-    postTime: created_at,
-    jobType:
-      type === 'Full Time'
-        ? Job.State.JobType.FULL_TIME
-        : Job.State.JobType.PART_TIME,
-    avatarSrc: company_logo || '',
-  }
-}
-
-/**
  * Retrieve a page of jobs from the remote api.
  *
  * @param currentPage - the page number of the page that was last loaded.
@@ -55,10 +29,10 @@ export const dtoToJob = ({
  */
 export const getPage = async (
   currentPage: number
-): Promise<Array<Job.State.Model>> => {
+): Promise<Array<Job.Model>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(Job.State.sampleJobs)
+      resolve(Job.Generate.dataSet)
     }, 5000)
   })
 }
@@ -73,7 +47,7 @@ export const getPage = async (
  */
 export const getNextPage = async (
   appState: App.State.Model
-): Promise<Array<Job.State.Model>> => {
+): Promise<Array<Job.Model>> => {
   const nextPage = App.State.getCurrentPage(appState) + 1
 
   return getPage(nextPage)

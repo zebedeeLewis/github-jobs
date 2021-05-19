@@ -1,3 +1,5 @@
+import * as Generate from './lib/generate'
+
 import {
   JobType,
   getId,
@@ -14,8 +16,13 @@ import {
   setLocation,
   getAvatarSrc,
   setAvatarSrc,
+  getHowToApply,
+  setHowToApply,
+  getDescription,
+  setDescription,
+  getCompanyUrl,
+  setCompanyUrl,
   create,
-  sampleJobs,
 } from './lib/domain-jobs'
 export {
   JobType,
@@ -33,8 +40,14 @@ export {
   setLocation,
   getAvatarSrc,
   setAvatarSrc,
+  getHowToApply,
+  setHowToApply,
+  getDescription,
+  setDescription,
+  getCompanyUrl,
+  setCompanyUrl,
   create,
-  sampleJobs,
+  Generate,
 }
 
 import type { Model } from './lib/domain-jobs'

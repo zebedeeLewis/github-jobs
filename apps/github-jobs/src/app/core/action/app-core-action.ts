@@ -1,8 +1,7 @@
 import * as _ from 'underscore'
 
 import * as State from '../state'
-import * as Job from '../../job'
-import * as Theme from '@shared/ui/theme'
+import * as Job from '@libs/domain/job'
 
 type Filters = {
   fullTimeOnly: boolean
@@ -67,7 +66,7 @@ export interface ToggleDarkModeOff {
  */
 export interface UpdateJobs {
   type: Type.UPDATE_JOBS
-  payload: Array<Job.State.Model>
+  payload: Array<Job.Model>
 }
 
 /**
@@ -114,9 +113,7 @@ export const toggleDarkModeOff = (): ToggleDarkModeOff => ({
  * @returns A new UpdateJobs action with the given array of jobs
  * as the payload.
  */
-export const updateJobs = (
-  jobs: Array<Job.State.Model>
-): UpdateJobs => ({
+export const updateJobs = (jobs: Array<Job.Model>): UpdateJobs => ({
   type: Type.UPDATE_JOBS,
   payload: jobs,
 })
