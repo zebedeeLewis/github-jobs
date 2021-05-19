@@ -25,14 +25,4 @@ export const useStyles = makeStyles(theme => ({
       maxWidth: theme.spacing(138),
     },
   },
-
-  filter: {
-    width: '100%',
-    transform: `translateY(${theme.spacing(3)}px)`,
-    boxShadow: theme.shadows[3],
-
-    [theme.breakpoints.up('sm')]: {
-      transform: `translateY(${theme.spacing(6)}px)`,
-    },
-  },
 }))

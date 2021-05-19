@@ -41,15 +41,22 @@ export const AppComponent = ({
   applyFilters,
   updateFilters,
 }: Props) => {
-  const theme = Theme.setTo(isDarkModeOn ? Theme.DARK : Theme.LIGHT)
   const classes = useStyles()
+  const theme = Theme.setTo(isDarkModeOn ? Theme.DARK : Theme.LIGHT)
+
   const headerProps = {
-    applyFilters,
-    updateFilters,
     isDarkModeOn,
     toggleDarkMode,
     logoSrc: logo,
     logoAlt: 'logo',
+  }
+
+  const homePageProps = {
+    jobs,
+    isLoadingJobs,
+    loadNextPage,
+    applyFilters,
+    updateFilters,
   }
 
   return (
@@ -62,13 +69,7 @@ export const AppComponent = ({
             <Route
               exact
               path={HomePage.ROUTE}
-              render={() => (
-                <HomePage.View
-                  jobs={jobs}
-                  isLoadingJobs={isLoadingJobs}
-                  loadNextPage={loadNextPage}
-                />
-              )}
+              render={() => <HomePage.View {...homePageProps} />}
             />
             <Route
               path={DetailsPage.ROUTE}
