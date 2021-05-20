@@ -7,12 +7,12 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline, Container } from '@material-ui/core'
 
 import * as Theme from '@shared/ui/theme'
+import * as Job from '@libs/domain/job'
 import { Header } from '@shared/ui/component'
 
 import * as HomePage from '../../page/home'
 import * as DetailsPage from '../../page/details'
 import * as NotFoundPage from '../../page/404'
-import * as Job from '../../job'
 import { useStyles } from './app-core-component.style'
 import logo from '../../../assets/image/logo.svg'
 
@@ -25,7 +25,7 @@ type Filters = {
 export type Props = {
   isDarkModeOn: boolean
   toggleDarkMode: () => void
-  jobs: Array<Job.State.Model>
+  jobs: Array<Job.Model>
   isLoadingJobs: boolean
   loadNextPage: () => void
   applyFilters: () => void
@@ -43,6 +43,12 @@ export const AppComponent = ({
 }: Props) => {
   const classes = useStyles()
   const theme = Theme.setTo(isDarkModeOn ? Theme.DARK : Theme.LIGHT)
+
+  const renderDetails = ({ match }) => {
+    const currentJob = jobs.filter(job => job.id === match.params.id)[0]
+
+    return <DetailsPage.View {...currentJob} />
+  }
 
   const headerProps = {
     isDarkModeOn,
@@ -62,26 +68,23 @@ export const AppComponent = ({
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header.View {...headerProps} />
-      <Container className={classes.container}>
-        <Router>
+      <Router>
+        <Header.View {...headerProps} />
+        <Container className={classes.container}>
           <Switch>
             <Route
               exact
               path={HomePage.ROUTE}
               render={() => <HomePage.View {...homePageProps} />}
             />
-            <Route
-              path={DetailsPage.ROUTE}
-              component={DetailsPage.View}
-            />
+            <Route path={DetailsPage.ROUTE} render={renderDetails} />
             <Route
               path={NotFoundPage.ROUTE}
               component={NotFoundPage.View}
             />
           </Switch>
-        </Router>
-      </Container>
+        </Container>
+      </Router>
     </ThemeProvider>
   )
 }

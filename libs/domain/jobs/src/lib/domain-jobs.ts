@@ -1,5 +1,3 @@
-import logo from './logo.svg'
-
 /**
  * What type of job. Is this a full time or part time job.
  */

@@ -1,42 +1,37 @@
 import { useEffect } from 'react'
-import * as _ from 'underscore'
-import {
-  useSelector,
-  useDispatch,
-  useStore,
-  connect,
-} from 'react-redux'
-
-import * as filterJobs from '@libs/use-case/filter-jobs'
-
-import { AppComponent } from '../view-component'
-
+import _ from 'underscore'
 import * as State from '../state'
 import * as Action from '../action'
 import * as Api from '../../api'
+import * as filterJobs from '@libs/use-case/filter-jobs'
+import { AppComponent } from '../view-component'
+import { useSelector, useDispatch } from 'react-redux'
 
 type Props = {
   state: State.Model
 }
 
-const stateToProps = state => ({
-  state,
-})
-
-const LocalAppContainer = ({ state }: Props) => {
+export const AppContainer = () => {
   const dispatch = useDispatch()
-  const updateJobs = jobs => dispatch(Action.updateJobs(jobs))
+  const isLoadingJobs = useSelector(State.isLoadingJobs)
+  const isLoadNeeded = useSelector(State.isLoadNeeded)
+  const jobs = useSelector(State.getJobs)
+  const isDarkModeOn = useSelector(State.getDarkModeToggle)
+  const currentPage = useSelector(State.getCurrentPage)
+  const filters = useSelector(State.getFilters)
 
   useEffect(() => {
-    if (State.isLoadNeeded(state)) {
-      Api.getNextPage(state).then(updateJobs)
+    const updateJobs = jobs => dispatch(Action.updateJobs(jobs))
+
+    if (isLoadNeeded) {
+      Api.getPage(currentPage + 1).then(updateJobs)
     }
   })
 
   const props = {
-    jobs: state.jobs,
-    isDarkModeOn: State.isDarkModeOn(state),
-    isLoadingJobs: State.isLoadingJobs(state),
+    jobs,
+    isLoadingJobs,
+    isDarkModeOn,
 
     loadNextPage() {
       dispatch(Action.loadNextPage())
@@ -53,7 +48,7 @@ const LocalAppContainer = ({ state }: Props) => {
             filterJobs.setLocation(location),
             filterJobs.setFullTimeOnly(fullTimeOnly),
             filterJobs.setsearchTerm(searchTerm)
-          )(state.filters)
+          )(filters)
         )
       )
     },
@@ -64,7 +59,7 @@ const LocalAppContainer = ({ state }: Props) => {
 
     toggleDarkMode() {
       dispatch(
-        State.isDarkModeOn(state)
+        isDarkModeOn
           ? Action.toggleDarkModeOff()
           : Action.toggleDarkModeOn()
       )
@@ -73,5 +68,3 @@ const LocalAppContainer = ({ state }: Props) => {
 
   return <AppComponent {...props} />
 }
-
-export const AppContainer = connect(stateToProps)(LocalAppContainer)

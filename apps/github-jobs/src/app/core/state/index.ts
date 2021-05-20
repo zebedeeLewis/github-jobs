@@ -13,7 +13,6 @@ import {
   setJobs,
   getFilters,
   setFilters,
-  isDarkModeOn,
   isLoadNeeded,
   isLoadingJobs,
 } from './app-core-state'
@@ -34,7 +33,6 @@ export {
   setJobs,
   getFilters,
   setFilters,
-  isDarkModeOn,
   isLoadNeeded,
   isLoadingJobs,
 }

@@ -2,8 +2,6 @@ export const raw = [
   {
     id: '32bf67e5-4971-47ce-985c-44b6b3860cdb',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/32bf67e5-4971-47ce-985c-44b6b3860cdb',
     postTime: 'Wed May 19 00:49:17 UTC 2021',
     company: 'SweetRush',
     companyUrl: 'https://www.sweetrush.com/',
@@ -19,8 +17,6 @@ export const raw = [
   {
     id: '7638eee4-4e75-4c06-a920-ea7619a311b5',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/7638eee4-4e75-4c06-a920-ea7619a311b5',
     postTime: 'Tue May 18 17:12:52 UTC 2021',
     company: 'MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH',
     companyUrl: 'https://www.mandarin-medien.de/',
@@ -36,8 +32,6 @@ export const raw = [
   {
     id: '1f004d5a-ef14-4533-8c0b-5f354978ddae',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/1f004d5a-ef14-4533-8c0b-5f354978ddae',
     postTime: 'Tue May 18 17:09:49 UTC 2021',
     company: 'MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH',
     companyUrl: 'https://www.mandarin-medien.de/',
@@ -53,8 +47,6 @@ export const raw = [
   {
     id: '8913f893-e6e3-4d50-aaf4-94f8eb479ead',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/8913f893-e6e3-4d50-aaf4-94f8eb479ead',
     postTime: 'Tue May 18 17:06:20 UTC 2021',
     company: 'MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH',
     companyUrl: 'https://www.mandarin-medien.de/',
@@ -70,8 +62,6 @@ export const raw = [
   {
     id: 'ed80af1f-d0bb-43ef-8bb4-9eab63fc41ec',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/ed80af1f-d0bb-43ef-8bb4-9eab63fc41ec',
     postTime: 'Tue May 18 16:12:42 UTC 2021',
     company: 'Car Registration, Inc. ',
     companyUrl: null,
@@ -87,8 +77,6 @@ export const raw = [
   {
     id: 'ecbe528e-ae60-45ad-9706-76819ae07c85',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/ecbe528e-ae60-45ad-9706-76819ae07c85',
     postTime: 'Tue May 18 14:10:50 UTC 2021',
     company: 'DEVK Versicherungen',
     companyUrl: 'https://bewerbungsportal.devk.de/index',
@@ -104,8 +92,6 @@ export const raw = [
   {
     id: '0afc57b1-f535-4cf6-af94-4c1aa57bbcfa',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/0afc57b1-f535-4cf6-af94-4c1aa57bbcfa',
     postTime: 'Tue May 18 14:05:17 UTC 2021',
     company: 'DEVK Versicherungen',
     companyUrl: 'https://bewerbungsportal.devk.de/index',
@@ -121,8 +107,6 @@ export const raw = [
   {
     id: '0271fa0b-05c3-4a79-80ff-84e331b45571',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/0271fa0b-05c3-4a79-80ff-84e331b45571',
     postTime: 'Tue May 18 11:53:18 UTC 2021',
     company: 'JobRad GmbH',
     companyUrl: 'https://www.jobrad.org/',
@@ -138,8 +122,6 @@ export const raw = [
   {
     id: 'f4a7c47f-c8ac-49fa-b15b-4ab37bfd2307',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/f4a7c47f-c8ac-49fa-b15b-4ab37bfd2307',
     postTime: 'Tue May 18 09:52:30 UTC 2021',
     company: 'Blindside',
     companyUrl: 'https://www.blindside.pro',
@@ -155,8 +137,6 @@ export const raw = [
   {
     id: 'cb850cd5-ea88-484f-8ac1-5359894279b1',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/cb850cd5-ea88-484f-8ac1-5359894279b1',
     postTime: 'Tue May 18 09:06:43 UTC 2021',
     company: 'DEVK Versicherungen',
     companyUrl: 'https://bewerbungsportal.devk.de/index',
@@ -172,8 +152,6 @@ export const raw = [
   {
     id: '2e99bd71-9684-4182-bd59-28a634ec9dd7',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/2e99bd71-9684-4182-bd59-28a634ec9dd7',
     postTime: 'Mon May 17 11:51:58 UTC 2021',
     company: 'Mimi Hearing Technologies GmbH',
     companyUrl: 'https://www.mimi.io/',
@@ -189,8 +167,6 @@ export const raw = [
   {
     id: '96f19efd-1a17-4375-9aa6-17a75e9570aa',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/96f19efd-1a17-4375-9aa6-17a75e9570aa',
     postTime: 'Mon May 17 11:10:09 UTC 2021',
     company: 'OSI International Holding GmbH',
     companyUrl: 'https://de.osigroup.com/',
@@ -206,8 +182,6 @@ export const raw = [
   {
     id: '3caf1d30-d5ae-4971-bd7a-2ee47ec0a90e',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/3caf1d30-d5ae-4971-bd7a-2ee47ec0a90e',
     postTime: 'Sat May 15 00:05:16 UTC 2021',
     company: 'Amco International Education Services',
     companyUrl: null,
@@ -223,8 +197,6 @@ export const raw = [
   {
     id: 'ee6f931e-db19-407d-88eb-5bbfc96a3829',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/ee6f931e-db19-407d-88eb-5bbfc96a3829',
     postTime: 'Fri May 14 19:19:01 UTC 2021',
     company: 'Crawford, Murphy and Tilly, Inc.',
     companyUrl: null,
@@ -240,8 +212,6 @@ export const raw = [
   {
     id: '0e9e936c-b671-4ae7-b07b-6564b0d40094',
     jobType: 'fullTime',
-    url:
-      'https://jobs.github.com/positions/0e9e936c-b671-4ae7-b07b-6564b0d40094',
     postTime: 'Fri May 14 15:12:50 UTC 2021',
     company: 'Demyst ',
     companyUrl: 'http://www.demyst.com',
