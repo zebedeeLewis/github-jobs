@@ -1,3 +1,14 @@
+const DEFAULT_ID = 'id needed'
+const DEFAULT_POST_TIME = new Date(Date.now()).toISOString()
+const DEFAULT_TITLE = 'No title provided'
+const DEFAULT_COMPANY = 'No company name provided'
+const DEFAULT_COMPANY_URL = ''
+const DEFAULT_LOCATION = ''
+const DEFAULT_DESCRIPTION = ''
+const DEFAULT_APPLICATION_INSTRUCTION =
+  '<span style="color: red">No instructions</span>'
+const DEFAULT_AVATAR_SRC = ''
+
 /**
  * What type of job. Is this a full time or part time job.
  */
@@ -58,7 +69,7 @@ export interface Model {
   /**
    * Details on how to apply to the job. This field holds HTML values.
    */
-  howToApply: string
+  applicationInstructions: string
 
   /**
    * The url to the company logo.
@@ -67,26 +78,24 @@ export interface Model {
 }
 
 /**
- * create a new job from the given input data. The input data
- * must be complete since our app does not create new jobs, it
- * only displays jobs from a repository.
+ * create a new job from the given input data.
  *
  * @param - the input data for the new job.
  *
  * @returns A new immutable job object from the given input data.
  */
 export const create = ({
-  id,
-  postTime,
-  jobType,
-  title,
-  company,
-  companyUrl,
-  location,
-  description,
-  howToApply,
-  avatarSrc,
-}: Model): Model =>
+  id = DEFAULT_ID,
+  postTime = DEFAULT_POST_TIME,
+  jobType = JobType.FULL_TIME,
+  title = DEFAULT_TITLE,
+  company = DEFAULT_COMPANY,
+  companyUrl = DEFAULT_COMPANY_URL,
+  location = DEFAULT_LOCATION,
+  description = DEFAULT_DESCRIPTION,
+  applicationInstructions = DEFAULT_APPLICATION_INSTRUCTION,
+  avatarSrc = DEFAULT_AVATAR_SRC,
+}: Partial<Model>): Model =>
   Object.freeze({
     id,
     postTime,
@@ -96,36 +105,39 @@ export const create = ({
     companyUrl,
     location,
     description,
-    howToApply,
+    applicationInstructions,
     avatarSrc,
   })
 
 /**
- * Get the howToApply from the given job model.
+ * Get the applicationInstructions from the given job model.
  *
  * @param model - the job model from which we want to extract the
- * howToApply.
+ * applicationInstructions.
  *
- * @returns The howToApply of the given job model.
+ * @returns The applicationInstructions of the given job model.
  */
-export const getHowToApply = (model: Model): string => model.howToApply
+export const getApplicationInstructions = (model: Model): string =>
+  model.applicationInstructions
 
 /**
- * Set the howToApply of the given job model.
+ * Set the applicationInstructions of the given job model.
  *
  * @remarks This function is curried
  *
- * @param model - the job model on which we want to set the howToApply.
- * @param howToApply - the new howToApply value
+ * @param model - the job model on which we want to set the applicationInstructions.
+ * @param applicationInstructions - the new applicationInstructions value
  *
- * @returns A new immutable job model where the "howToApply" attribute
+ * @returns A new immutable job model where the "applicationInstructions" attribute
  * is set to the given value.
  */
-export type SetHowToApply = (v: string) => (m: Model) => Model
-export const setHowToApply: SetHowToApply = howToApply => model =>
+export type SetApplicationInstructions = (
+  v: string
+) => (m: Model) => Model
+export const setApplicationInstructions: SetApplicationInstructions = applicationInstructions => model =>
   create({
     ...model,
-    howToApply,
+    applicationInstructions,
   })
 
 /**

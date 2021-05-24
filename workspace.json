@@ -169,27 +169,6 @@
         }
       }
     },
-    "use-case-filter-jobs": {
-      "root": "libs/use-case/filter-jobs",
-      "sourceRoot": "libs/use-case/filter-jobs/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/use-case/filter-jobs/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/use-case/filter-jobs"],
-          "options": {
-            "jestConfig": "libs/use-case/filter-jobs/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "domain-jobs": {
       "root": "libs/domain/jobs",
       "sourceRoot": "libs/domain/jobs/src",
@@ -206,6 +185,48 @@
           "outputs": ["coverage/libs/domain/jobs"],
           "options": {
             "jestConfig": "libs/domain/jobs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "application": {
+      "root": "libs/application",
+      "sourceRoot": "libs/application/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/application/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/application"],
+          "options": {
+            "jestConfig": "libs/application/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "use-case": {
+      "root": "libs/use-case",
+      "sourceRoot": "libs/use-case/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/use-case/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/use-case"],
+          "options": {
+            "jestConfig": "libs/use-case/jest.config.js",
             "passWithNoTests": true
           }
         }

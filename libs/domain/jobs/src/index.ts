@@ -1,4 +1,5 @@
 import * as Generate from './lib/generate'
+import * as Repo from './lib/repository'
 
 import {
   JobType,
@@ -16,14 +17,15 @@ import {
   setLocation,
   getAvatarSrc,
   setAvatarSrc,
-  getHowToApply,
-  setHowToApply,
+  getApplicationInstructions,
+  setApplicationInstructions,
   getDescription,
   setDescription,
   getCompanyUrl,
   setCompanyUrl,
   create,
 } from './lib/domain-jobs'
+
 export {
   JobType,
   getId,
@@ -40,15 +42,17 @@ export {
   setLocation,
   getAvatarSrc,
   setAvatarSrc,
-  getHowToApply,
-  setHowToApply,
+  getApplicationInstructions,
+  setApplicationInstructions,
   getDescription,
   setDescription,
   getCompanyUrl,
   setCompanyUrl,
   create,
   Generate,
+  Repo,
 }
 
 import type { Model } from './lib/domain-jobs'
+
 export type { Model }

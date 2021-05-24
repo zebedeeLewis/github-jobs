@@ -1,3 +1,3 @@
-import * as App from './core'
+import { AppContainer as App } from './view'
 
-export { App }
+export default App

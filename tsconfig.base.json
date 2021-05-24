@@ -21,7 +21,15 @@
       "@libs/use-case/filter-jobs": [
         "libs/use-case/filter-jobs/src/index.ts"
       ],
-      "@libs/domain/job": ["libs/domain/jobs/src/index.ts"]
+      "@libs/domain/job": ["libs/domain/jobs/src/index.ts"],
+      "@libs/application/github-jobs/state": [
+        "libs/application/github-jobs/state/src/index.ts"
+      ],
+      "@libs/application/github-jobs/command": [
+        "libs/application/github-jobs/command/src/index.ts"
+      ],
+      "@libs/application": ["libs/application/src/index.ts"],
+      "@libs/use-case": ["libs/use-case/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

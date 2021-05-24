@@ -32,10 +32,13 @@
     "shared-ui-theme": {
       "tags": []
     },
-    "use-case-filter-jobs": {
+    "domain-jobs": {
       "tags": []
     },
-    "domain-jobs": {
+    "application": {
+      "tags": []
+    },
+    "use-case": {
       "tags": []
     }
   }

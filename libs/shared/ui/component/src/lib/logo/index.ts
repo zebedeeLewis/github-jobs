@@ -1,5 +1,3 @@
-import * as Action from './action'
-import * as State from './state'
-import { LogoContainer as View } from './view-container'
+import { LogoComponent as Logo } from './component'
 
-export { View, Action, State }
+export default Logo

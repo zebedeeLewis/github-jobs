@@ -1,5 +1,3 @@
-import * as Action from './action'
-import * as State from './state'
-import { ThemeSwitchContainer as View } from './view-container'
+import { ThemeSwitchComponent as ThemeSwitch } from './component'
 
-export { View, Action, State }
+export default ThemeSwitch

@@ -1,23 +1,33 @@
-import { StrictMode } from 'react'
+import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import * as Redux from 'redux'
+import * as ReactRedux from 'react-redux'
+import createSagaMiddleware from 'redux-saga'
 
-import { App } from './app'
+import App from './app'
+import * as Application from '@libs/application'
 
-/* eslint-disable no-underscore-dangle */
-const store = createStore(
-  App.Action.update,
+const sagaMiddleware = createSagaMiddleware()
+
+const store = Redux.createStore(
+  Application.Message.patch,
+  /* eslint-disable no-underscore-dangle 
   (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+   eslint-enable */
+  undefined,
+  Redux.applyMiddleware(sagaMiddleware)
 )
-/* eslint-enable */
+
+sagaMiddleware.run(
+  Application.Command.configLoadJobsCommand(Application.create({}))
+)
 
 ReactDOM.render(
-  <StrictMode>
-    <Provider store={store}>
-      <App.View />
-    </Provider>
-  </StrictMode>,
+  <React.StrictMode>
+    <ReactRedux.Provider store={store}>
+      <App />
+    </ReactRedux.Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 )

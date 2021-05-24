@@ -1,10 +1,10 @@
 import { FilterInput } from '@shared/ui/component'
+import * as Job from '@libs/domain/job'
 
 import { HomePageComponent } from '../view-component'
-import * as Job from '../../../job'
 
 export type Props = {
-  jobs: Array<Job.State.Model>
+  jobs: Array<Job.Model>
   isLoadingJobs: boolean
   loadNextPage: () => void
   applyFilters: () => void

@@ -1,5 +1,3 @@
-import * as Action from './action'
-import * as State from './state'
-import { HeaderContainer as View } from './view-container'
+import { HeaderComponent as Header } from './component'
 
-export { View, Action, State }
+export default Header

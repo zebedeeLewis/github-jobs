@@ -1,12 +1,14 @@
 import React from 'react'
 import { FilterInputComponent } from '../view-component'
-import * as filterJobs from '@libs/use-case/filter-jobs'
+import * as UseCase from '@libs/use-case'
 
-export type UpdateFilters = (f: Partial<filterJobs.JobFilter>) => void
+export type UpdateFilters = (
+  f: Partial<UseCase.filterJobs.JobFilter>
+) => void
 
 export type Props = {
   applyFilters: () => void
-  updateFilters: (f: Partial<filterJobs.JobFilter>) => void
+  updateFilters: (f: Partial<UseCase.filterJobs.JobFilter>) => void
 }
 
 export const FilterInputContainer = ({
