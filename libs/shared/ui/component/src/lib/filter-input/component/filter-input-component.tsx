@@ -94,6 +94,7 @@ export const FilterInputComponent = ({
         <Divider flexItem orientation="vertical" />
         <Grid
           item
+					container
           alignItems="center"
           xs="auto"
           sm={3}
