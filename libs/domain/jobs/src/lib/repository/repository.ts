@@ -1,6 +1,4 @@
 import * as Job from '../domain-jobs'
-import * as Query from './query'
-import * as App from '@libs/application'
 
 export interface FilterSpec {
   id: string
@@ -34,5 +32,6 @@ export const list = async (
 	repo: Repository,
 ): Promise<Array<Job.Model>> => {
 
-  return await repo.dao.read()
+  //return await repo.dao.read()
+	return [Job.create({})]
 }

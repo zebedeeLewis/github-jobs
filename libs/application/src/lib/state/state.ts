@@ -83,7 +83,7 @@ export const setJobDataStatus: SetJobDataStatus = status => data => ({
 
 export type State = {
   jobs: Data<Array<Job.Model>>
-  filters: Job.Repo.Lister
+  filters: unknown 
   darkModeToggle: boolean
   currentPage: number
   pageSize: number
@@ -178,7 +178,7 @@ export const setJobs: SetJobs = jobs => state => ({
  *
  * @returns The filters from the given state model.
  */
-export const getFilters = (state: State): Job.Repo.Lister =>
+export const getFilters = (state: State): unknown =>
   state.filters
 
 /**
@@ -192,7 +192,7 @@ export const getFilters = (state: State): Job.Repo.Lister =>
  * @returns The filters from the given state model.
  */
 export type SetFilters
-  =  (v: Job.Repo.Lister)
+  =  (v: unknown)
   => (s: State)
   => State
 export const setFilters: SetFilters = filters => state => ({
