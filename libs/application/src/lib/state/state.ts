@@ -17,7 +17,7 @@ export type DataStatus =
 
 export type Data<T> = {
   status: DataStatus
-  data: T
+  value: T
 }
 
 /**
@@ -30,7 +30,7 @@ export type Data<T> = {
  */
 export const getJobData = (
   data: Data<Array<Job.Model>>
-): Array<Job.Model> => data.data
+): Array<Job.Model> => data.value
 
 /**
  * Set the jobData value of the given state model.
@@ -95,7 +95,7 @@ export type State = {
  * @returns A new state model.
  */
 export const create = ({
-  jobs = { status: INIT, data: [] },
+  jobs = { status: INIT, value: [] },
   filters = Job.Repo.list,
   darkModeToggle = DARK_MODE_OFF,
   currentPage = NO_PAGE_LOADED,

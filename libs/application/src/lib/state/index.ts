@@ -1,6 +1,7 @@
 import {
   DARK_MODE_ON,
   DARK_MODE_OFF,
+  INIT,
   LOADING,
   LOADING_DONE,
   LOADING_FAILED,
@@ -24,6 +25,7 @@ import type { State } from './state'
 export {
   DARK_MODE_ON,
   DARK_MODE_OFF,
+  INIT,
   LOADING,
   LOADING_DONE,
   LOADING_FAILED,

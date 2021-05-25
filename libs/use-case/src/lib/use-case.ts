@@ -8,6 +8,7 @@ const DEFAULT_JOB_TYPE = Job.JobType.FULL_TIME
 export const filterByJobType = (
   jobType: Job.JobType
 ): Job.Repo.Transformer => {
+  //return Job.Repo.filter(_.compose(field(, eq(23)))
   return Job.Repo.filter(job => job.jobType === jobType)
 }
 

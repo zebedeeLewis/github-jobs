@@ -29,7 +29,8 @@
         "libs/application/github-jobs/command/src/index.ts"
       ],
       "@libs/application": ["libs/application/src/index.ts"],
-      "@libs/use-case": ["libs/use-case/src/index.ts"]
+      "@libs/use-case": ["libs/use-case/src/index.ts"],
+      "@libs/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

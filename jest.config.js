@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/domain/jobs',
     '<rootDir>/libs/application',
     '<rootDir>/libs/use-case',
+    '<rootDir>/libs/utils',
   ],
 }

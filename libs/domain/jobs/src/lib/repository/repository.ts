@@ -1,4 +1,12 @@
 import * as Job from '../domain-jobs'
+import * as Query from './query'
+
+export interface FilterSpec {
+  id: string
+  jobType: Job.JobType
+  location: string
+  searchTerm: string
+}
 
 export interface Repository {
   repoType: 'JOB'
@@ -7,11 +15,11 @@ export interface Repository {
 
 /** create a new job repo */
 export const create = ({
+  repoType = 'JOB',
+  query = '',
+}: Partial<Repository>): Repository => ({
   repoType,
   query,
-}: Partial<Repository>): Repository => ({
-  repoType: 'JOB',
-  query: '',
 })
 
 export type JobCollection = Promise<Array<Job.Model>>
@@ -24,21 +32,14 @@ export const list: Lister = repo => {
   return Promise.resolve([Job.create({})])
 }
 
-export type FilterFn = (j: Job.Model) => boolean
 /** filter the job collection TODO!!! */
-type Filter = (fn: FilterFn) => Transformer
-export const filter: Filter = fn => repo => {
-  return {
-    type: 'JOB',
-    query: '',
-  }
+type Filter = (fn: FilterSpec) => Transformer
+export const filter: Filter = filterSpec => repo => {
+  return create({})
 }
 
 /** Slice the job collection TODO!!!*/
 type Slicer = (s: number) => (c: number) => Transformer
 export const slice: Slicer = start => count => repo => {
-  return {
-    type: 'JOB',
-    query: '',
-  }
+  return create({})
 }

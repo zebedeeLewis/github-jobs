@@ -1,3 +1,4 @@
+import * as _ from 'underscore'
 import * as Job from '@libs/domain/job'
 import * as State from '../state'
 
@@ -102,6 +103,23 @@ export const jobsFailedToLoad = (
   payload: reason,
 })
 
+
+export const APPLY_FILTERS = 'APPLY_FILTERS'
+export type APPLY_FILTERS_COMMAND = Model<
+  typeof APPLY_FILTERS,
+  unknown
+>
+/**
+ * This command message is used to direct the system to turn off
+ * dark mode.
+ */
+export const applyFilters =
+  (filters: unknown): APPLY_FILTERS_COMMAND => ({
+    type: APPLY_FILTERS,
+    payload: filters,
+  })
+
+
 export type Msg =
   | LOAD_JOBS_COMMAND
   | JOBS_LOADED_EVENT
@@ -110,6 +128,7 @@ export type Msg =
   | DARK_MODE_ON_EVENT
   | TOGGLE_DARK_MODE_OFF_COMMAND
   | DARK_MODE_OFF_EVENT
+  | APPLY_FILTERS_COMMAND
 
 /**
  * Updates the given state according to the given action.
@@ -120,15 +139,31 @@ export type Msg =
  * @returns A new updated app state.
  */
 export const patch = (
-  model: State.State = State.create({}),
+  state: State.State = State.create({}),
   msg: Msg
 ): State.State => {
+  const currentJobData = State.getJobs(state)
+  const currentJobs = State.getJobData(currentJobData)
+
   switch (msg.type) {
     case TOGGLE_DARK_MODE_ON:
-      return State.setDarkModeToggle(State.DARK_MODE_ON)(model)
+      return State.setDarkModeToggle(State.DARK_MODE_ON)(state)
     case TOGGLE_DARK_MODE_OFF:
-      return State.setDarkModeToggle(State.DARK_MODE_OFF)(model)
+      return State.setDarkModeToggle(State.DARK_MODE_OFF)(state)
+    case LOAD_JOBS:
+      return State.setJobs(
+        State.setJobDataStatus(State.LOADING)(State.getJobs(state))
+      )(state)
+    case JOBS_LOADED:
+      return State.setJobs(
+        _.compose(
+          State.setJobData([...currentJobs, ...msg.payload]),
+          State.setJobDataStatus(State.LOADING_DONE)
+        )(currentJobData)
+      )(state)
+    case APPLY_FILTERS:
+			return state
     default:
-      return model
+      return state
   }
 }

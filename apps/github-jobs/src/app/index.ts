@@ -1,3 +1,3 @@
-import { AppContainer as App } from './view'
+import { AppContainer as App } from './component'
 
 export default App

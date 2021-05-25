@@ -1,5 +1,6 @@
 import { AppBar, Grid, Container } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import * as Utils from '@libs/utils'
 import Logo from '../../logo'
 import ThemeSwitch from '../../theme-switch'
 import { useStyles } from './header-component.style'
@@ -29,7 +30,7 @@ export const HeaderComponent = ({
           direction="row"
         >
           <Grid item>
-            <Link to="/">
+            <Link to={Utils.HOME_PAGE_ROUTE}>
               <Logo imgSrc={logoSrc} alt={logoAlt} />
             </Link>
           </Grid>
