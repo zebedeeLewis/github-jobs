@@ -1,5 +1,6 @@
 import * as Job from '../domain-jobs'
 import * as Query from './query'
+import * as App from '@libs/application'
 
 export interface FilterSpec {
   id: string
@@ -27,19 +28,11 @@ export type Getter = (r: Repository) => Job.Model
 export type Transformer = (r: Repository) => Repository
 
 /** produce a list of jobs TODO!!! */
-export type Lister = (r: Repository) => JobCollection
-export const list: Lister = repo => {
-  return Promise.resolve([Job.create({})])
-}
+export const list = async (
+	start: number,
+	count: number,
+	repo: Repository,
+): Promise<Array<Job.Model>> => {
 
-/** filter the job collection TODO!!! */
-type Filter = (fn: FilterSpec) => Transformer
-export const filter: Filter = filterSpec => repo => {
-  return create({})
-}
-
-/** Slice the job collection TODO!!!*/
-type Slicer = (s: number) => (c: number) => Transformer
-export const slice: Slicer = start => count => repo => {
-  return create({})
+  return await repo.dao.read()
 }

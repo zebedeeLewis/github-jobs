@@ -2,7 +2,7 @@ import * as Job from '@libs/domain/job'
 
 export type Model = {
   repos: { job: Job.Repo.Repository }
-  filters: Job.Repo.Lister
+  filters: unknown
 }
 
 /**
@@ -57,7 +57,7 @@ export const setRepos: SetRepos = repos => model => ({
  *
  * @returns The filters from the given state model.
  */
-export const getFilters = (model: Model): Job.Repo.Lister =>
+export const getFilters = (model: Model): unknown =>
   model.filters
 
 /**
@@ -70,7 +70,7 @@ export const getFilters = (model: Model): Job.Repo.Lister =>
  *
  * @returns The filters from the given state model.
  */
-export type SetFilters = (v: Job.Repo.Lister) => (s: Model) => Model
+export type SetFilters = (v: unknown) => (s: Model) => Model
 export const setFilters: SetFilters = filters => model => ({
   ...model,
   filters,

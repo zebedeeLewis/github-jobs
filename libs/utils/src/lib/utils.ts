@@ -1,3 +1,5 @@
+export const NOT_FOUND_PAGE_ROUTE = '/*'
+export const DETAILS_PAGE_ROUTE = '/details/:id'
 export const HOME_PAGE_ROUTE = '/'
 
 /**

@@ -1,5 +1,5 @@
 import * as Job from '@libs/domain/job'
-import { DetailsPageComponent } from '../view-component'
+import { DetailsPageComponent } from './details-page-component'
 import sanitizeHtml from 'sanitize-html'
 
 export const DetailsPageContainer = (job: Job.Model) => {

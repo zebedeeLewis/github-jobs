@@ -3,6 +3,7 @@ import * as Job from '@libs/domain/job'
 export const NO_PAGE_LOADED = 0
 export const DARK_MODE_ON = true
 export const DARK_MODE_OFF = false
+export const DEFAULT_PAGE_SIZE = 10
 
 export const INIT = 'INIT'
 export const LOADING = 'LOADING'
@@ -85,6 +86,7 @@ export type State = {
   filters: Job.Repo.Lister
   darkModeToggle: boolean
   currentPage: number
+  pageSize: number
 }
 
 /**
@@ -99,11 +101,43 @@ export const create = ({
   filters = Job.Repo.list,
   darkModeToggle = DARK_MODE_OFF,
   currentPage = NO_PAGE_LOADED,
+  pageSize = DEFAULT_PAGE_SIZE,
 }: Partial<State>): State => ({
   jobs,
   filters,
   darkModeToggle,
   currentPage,
+  pageSize,
+})
+
+/**
+ * Get the pageSize from the given state model.
+ *
+ * @param state - the state model from which we want to extract the
+ * pageSize.
+ *
+ * @returns The pageSize from the given state model.
+ */
+export const getPageSize = (state: State): number =>
+  state.pageSize
+
+/**
+ * Set the pageSize value of the given state model.
+ *
+ * @param pageSize - the new value.
+ *
+ * @param state - the state model on which we want to set the
+ * pageSize value.
+ *
+ * @returns The pageSize from the given state model.
+ */
+export type SetPageSize
+  =  (v: number)
+  => (s: State)
+  => State
+export const setPageSize: SetPageSize = pageSize => state => ({
+  ...state,
+  pageSize,
 })
 
 /**
@@ -127,7 +161,10 @@ export const getJobs = (state: State): Data<Array<Job.Model>> =>
  *
  * @returns The jobs from the given state model.
  */
-export type SetJobs = (v: Data<Array<Job.Model>>) => (s: State) => State
+export type SetJobs
+  =  (v: Data<Array<Job.Model>>)
+  => (s: State)
+  => State
 export const setJobs: SetJobs = jobs => state => ({
   ...state,
   jobs,
@@ -154,7 +191,10 @@ export const getFilters = (state: State): Job.Repo.Lister =>
  *
  * @returns The filters from the given state model.
  */
-export type SetFilters = (v: Job.Repo.Lister) => (s: State) => State
+export type SetFilters
+  =  (v: Job.Repo.Lister)
+  => (s: State)
+  => State
 export const setFilters: SetFilters = filters => state => ({
   ...state,
   filters,
@@ -181,7 +221,10 @@ export const getCurrentPage = (state: State): number =>
  *
  * @returns The currentPage from the given state model.
  */
-export type SetCurrentPage = (v: number) => (s: State) => State
+export type SetCurrentPage
+  =  (v: number)
+  => (s: State)
+  => State
 export const setCurrentPage: SetCurrentPage = currentPage => state => ({
   ...state,
   currentPage,
@@ -209,7 +252,10 @@ export const getDarkModeToggle = (model: State): boolean =>
  *
  * @returns The darkModeToggle from the given state model.
  */
-export type SetDarkModeToggle = (v: boolean) => (s: State) => State
+export type SetDarkModeToggle
+  =  (v: boolean)
+  => (s: State)
+  => State
 export const setDarkModeToggle: SetDarkModeToggle = darkModeToggle => state => ({
   ...state,
   darkModeToggle,

@@ -12,18 +12,10 @@ import * as Job from '@libs/domain/job'
 import { Header } from '@shared/ui/component'
 
 import HomePage from '../page/home'
-// import * as DetailsPage from '../page/details'
-// import * as NotFoundPage from '../page/404'
+import DetailsPage from '../page/details'
+import NotFoundPage from '../page/404'
 import { useStyles } from './app-core-component.style'
 import logo from '../../assets/image/logo.svg'
-
-/*
-type Filters = {
-  fullTimeOnly: boolean
-  location: string
-  searchTerm: string
-}
-	 */
 
 export type Props = {
   jobs: Array<Job.Model>
@@ -45,15 +37,13 @@ export const AppComponent = ({
   const classes = useStyles()
   const theme = Theme.setTo(isDarkModeOn ? Theme.DARK : Theme.LIGHT)
 
-  /*
   const renderDetails = ({ match }) => {
     const currentJob = jobs
       .filter(job => job.id === match.params.id)
       .pop()
 
-    return <DetailsPage.View {...currentJob} />
+    return <DetailsPage {...currentJob} />
   }
-		 */
 
   const headerProps = {
     isDarkModeOn,
@@ -79,15 +69,16 @@ export const AppComponent = ({
             <Route
               exact
               path={Utils.HOME_PAGE_ROUTE}
-              render={() => <HomePage {...homePageProps} />}
-            />
-            {/*
-            <Route path={DetailsPage.ROUTE} render={renderDetails} />
+							render={() => {return <HomePage {...homePageProps} />}}
+						/>
+						<Route
+							path={Utils.DETAILS_PAGE_ROUTE}
+							render={renderDetails}
+						/>
             <Route
-              path={NotFoundPage.ROUTE}
-              component={NotFoundPage.View}
+              path={Utils.NOT_FOUND_PAGE_ROUTE}
+              component={NotFoundPage}
             />
-							*/}
           </Switch>
         </Container>
       </Router>

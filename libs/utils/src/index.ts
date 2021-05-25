@@ -1,2 +1,13 @@
-import { HOME_PAGE_ROUTE, pathFromId } from './lib/utils'
-export { HOME_PAGE_ROUTE, pathFromId }
+import {
+	HOME_PAGE_ROUTE,
+	DETAILS_PAGE_ROUTE,
+	NOT_FOUND_PAGE_ROUTE,
+	pathFromId
+} from './lib/utils'
+
+export {
+	HOME_PAGE_ROUTE,
+	DETAILS_PAGE_ROUTE,
+	NOT_FOUND_PAGE_ROUTE,
+	pathFromId
+}

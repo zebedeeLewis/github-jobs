@@ -89,9 +89,9 @@ export const DetailsPageComponent = (job: Job.Model) => {
         <Card>
           <CardContent>
             <Typography component="span">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Job.getHowToApply(job),
+							<span
+								dangerouslySetInnerHTML={{
+                  __html: Job.getApplicationInstructions(job),
                 }}
               />
             </Typography>
