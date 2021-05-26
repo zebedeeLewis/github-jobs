@@ -18,5 +18,12 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "domain-entity--job": {
+      "tags": []
+    },
+    "domain--data-access-object": {
+      "tags": []
+    }
+  }
 }

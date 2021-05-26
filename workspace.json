@@ -19,5 +19,50 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "domain-entity--job": {
+      "root": "libs/domain/entity//job",
+      "sourceRoot": "libs/domain/entity/job/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/domain/entity//job/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/domain/entity/job"],
+          "options": {
+            "jestConfig": "libs/domain/entity/job/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "domain--data-access-object": {
+      "root": "libs/domain//data-access-object",
+      "sourceRoot": "libs/domain/data-access-object/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/domain//data-access-object/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/domain/data-access-object"],
+          "options": {
+            "jestConfig": "libs/domain/data-access-object/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
 }

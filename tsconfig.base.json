@@ -15,23 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@github-jobs/*": ["apps/github-jobs/src/*"],
-      "@shared/ui/component": ["libs/shared/ui/component/src/index.ts"],
-      "@shared/ui/theme": ["libs/shared/ui/theme/src/index.ts"],
-      "@libs/use-case/filter-jobs": [
-        "libs/use-case/filter-jobs/src/index.ts"
-      ],
-      "@libs/domain/job": ["libs/domain/jobs/src/index.ts"],
-      "@libs/application/github-jobs/state": [
-        "libs/application/github-jobs/state/src/index.ts"
-      ],
-      "@libs/application/github-jobs/command": [
-        "libs/application/github-jobs/command/src/index.ts"
-      ],
-      "@libs/application": ["libs/application/src/index.ts"],
-      "@libs/use-case": ["libs/use-case/src/index.ts"],
-      "@libs/utils": ["libs/utils/src/index.ts"],
-      "@domain/entity/job": ["libs/domain/entity/jobs/src/index.ts"]
+      "@domain/entity/job": ["libs/domain/entity/job/src/index.ts"],
+      "@domain/data-access-object": [
+        "libs/domain/data-access-object/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
