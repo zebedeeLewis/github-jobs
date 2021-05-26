@@ -24,6 +24,9 @@
     },
     "domain--data-access-object": {
       "tags": []
+    },
+    "application-service-command": {
+      "tags": []
     }
   }
 }

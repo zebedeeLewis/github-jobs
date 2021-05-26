@@ -1,23 +1,23 @@
 import {
-	create,
-	list,
-	getRepoType,
-	setRepoType,
-	getQuery,
-	setQuery,
-	getDao,
-	setDao
+  create,
+  list,
+  getRepoType,
+  setRepoType,
+  getQuery,
+  setQuery,
+  getDao,
+  setDao
 } from './repository'
 
 export {
-	create,
-	list,
-	getRepoType,
-	setRepoType,
-	getQuery,
-	setQuery,
-	getDao,
-	setDao
+  create,
+  list,
+  getRepoType,
+  setRepoType,
+  getQuery,
+  setQuery,
+  getDao,
+  setDao
 }
 
 import type {

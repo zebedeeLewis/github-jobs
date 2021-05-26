@@ -10,20 +10,20 @@ export interface FilterSpec {
 }
 
 export interface Repository {
-	repoType: 'JOB'
-	query: string
-	dao?: DAO.DAO
+  repoType: 'JOB'
+  query: string
+  dao?: DAO.DAO
 }
 
 /** create a new job repo */
 export const create = ({
-	repoType = 'JOB',
-	query = '',
-	dao = undefined,
+  repoType = 'JOB',
+  query = '',
+  dao = undefined,
 }: Partial<Repository>): Repository => Object.freeze({
-	repoType,
-	query,
-	dao,
+  repoType,
+  query,
+  dao,
 })
 
 /** Get the dao from the given job model.*/
@@ -32,11 +32,11 @@ export const getDao = (repo: Repository): DAO.DAO =>
 
 /** Set the dao of the given job model. */
 export type SetDao
-	=  (v: DAO.DAO)
-	=> (r: Repository)
-	=> Repository
+  =  (v: DAO.DAO)
+  => (r: Repository)
+  => Repository
 export const setDao: SetDao
-	= dao => repo => create({
+  = dao => repo => create({
     ...repo,
     dao,
   })
@@ -47,11 +47,11 @@ export const getQuery = (repo: Repository): string =>
 
 /** Set the query of the given job model. */
 export type SetQuery
-	=  (v: string)
-	=> (r: Repository)
-	=> Repository
+  =  (v: string)
+  => (r: Repository)
+  => Repository
 export const setQuery: SetQuery
-	= query => repo => create({
+  = query => repo => create({
     ...repo,
     query,
   })
@@ -62,22 +62,22 @@ export const getRepoType = (repo: Repository): 'JOB' =>
 
 /** Set the repoType of the given job model. */
 export type SetRepoType
-	=  (v: 'JOB')
-	=> (r: Repository)
-	=> Repository
+  =  (v: 'JOB')
+  => (r: Repository)
+  => Repository
 export const setRepoType: SetRepoType
-	= repoType => repo => create({
+  = repoType => repo => create({
     ...repo,
     repoType,
   })
 
 /** produce a list of jobs TODO!!! */
 export const list = async (
-	start: number,
-	count: number,
-	repo: Repository,
+  start: number,
+  count: number,
+  repo: Repository,
 ): Promise<Array<Job.Model>> => {
 
   //return await repo.dao.read()
-	return Generate.dataSet
+  return Generate.dataSet
 }

@@ -115,11 +115,11 @@ export const getApplicationInstructions = (model: Model): string =>
 
 /** Set the applicationInstructions of the given job model.*/
 export type SetApplicationInstructions
-	=  ( v: string)
-	=> (m: Model)
-	=> Model
+  =  ( v: string)
+  => (m: Model)
+  => Model
 export const setApplicationInstructions: SetApplicationInstructions
-	= applicationInstructions => model => create({
+  = applicationInstructions => model => create({
     ...model,
     applicationInstructions,
   })
@@ -130,11 +130,11 @@ export const getDescription = (model: Model): string =>
 
 /** Set the description of the given job model. */
 export type SetDescription
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setDescription: SetDescription
-	= description => model => create({
+  = description => model => create({
     ...model,
     description,
   })
@@ -144,11 +144,11 @@ export const getCompanyUrl = (model: Model): string => model.companyUrl
 
 /** Set the companyUrl of the given job model. */
 export type SetCompanyUrl
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setCompanyUrl: SetCompanyUrl
-	= companyUrl => model => create({
+  = companyUrl => model => create({
     ...model,
     companyUrl,
   })
@@ -158,11 +158,11 @@ export const getAvatarSrc = (model: Model): string => model.avatarSrc
 
 /** Set the avatarSrc of the given job model. */
 export type SetAvatarSrc
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setAvatarSrc: SetAvatarSrc
-	= avatarSrc => model => create({
+  = avatarSrc => model => create({
     ...model,
     avatarSrc,
   })
@@ -172,11 +172,11 @@ export const getLocation = (model: Model): string => model.location
 
 /** Set the location of the given job model. */
 export type SetLocation
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setLocation: SetLocation
-	= location => model => create({
+  = location => model => create({
     ...model,
     location,
   })
@@ -186,11 +186,11 @@ export const getCompany = (model: Model): string => model.company
 
 /** Set the company of the given job model. */
 export type SetCompany
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setCompany: SetCompany
-	= company => model => create({
+  = company => model => create({
     ...model,
     company,
   })
@@ -200,11 +200,11 @@ export const getTitle = (model: Model): string => model.title
 
 /** Set the title of the given job model. */
 export type SetTitle
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setTitle: SetTitle
-	= title => model => create({
+  = title => model => create({
     ...model,
     title,
   })
@@ -214,11 +214,11 @@ export const getJobType = (model: Model): JobType => model.jobType
 
 /** Set the jobType of the given job model. */
 export type SetJobType
-	=  (v: JobType)
-	=> (m: Model)
-	=> Model
+  =  (v: JobType)
+  => (m: Model)
+  => Model
 export const setJobType: SetJobType
-	= jobType => model => create({
+  = jobType => model => create({
     ...model,
     jobType,
   })
@@ -228,11 +228,11 @@ export const getPostTime = (model: Model): string => model.postTime
 
 /** Set the postTime of the given job model. */
 export type SetPostTime
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setPostTime: SetPostTime
-	= postTime => model => create({
+  = postTime => model => create({
     ...model,
     postTime,
   })
@@ -242,11 +242,11 @@ export const getId = (model: Model): string => model.id
 
 /** Set the id of the given job model. */
 export type SetId
-	=  (v: string)
-	=> (m: Model)
-	=> Model
+  =  (v: string)
+  => (m: Model)
+  => Model
 export const setId: SetId
-	= id => model => create({
+  = id => model => create({
     ...model,
     id,
   })

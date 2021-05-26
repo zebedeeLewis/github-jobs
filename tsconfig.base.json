@@ -18,6 +18,9 @@
       "@domain/entity/job": ["libs/domain/entity/job/src/index.ts"],
       "@domain/data-access-object": [
         "libs/domain/data-access-object/src/index.ts"
+      ],
+      "@application/service/command": [
+        "libs/application/service/command/src/index.ts"
       ]
     }
   },
