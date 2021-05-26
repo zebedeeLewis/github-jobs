@@ -18,31 +18,5 @@
       }
     }
   },
-  "projects": {
-    "github-jobs": {
-      "tags": []
-    },
-    "github-jobs-e2e": {
-      "tags": [],
-      "implicitDependencies": ["github-jobs"]
-    },
-    "shared-ui-component": {
-      "tags": []
-    },
-    "shared-ui-theme": {
-      "tags": []
-    },
-    "domain-jobs": {
-      "tags": []
-    },
-    "application": {
-      "tags": []
-    },
-    "use-case": {
-      "tags": []
-    },
-    "utils": {
-      "tags": []
-    }
-  }
+  "projects": {}
 }
