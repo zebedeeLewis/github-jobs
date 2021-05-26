@@ -1,4 +1,4 @@
-import * as _ from 'underscore'
+import _ from 'underscore'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as Redux from 'redux'
@@ -13,13 +13,16 @@ import * as AppState from '@presentation/ui/state'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const reduxEnhancers = Redux.compose(
-  Redux.applyMiddleware(sagaMiddleware),
-  /* eslint-disable no-underscore-dangle */
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-  /* eslint-enable */
-)
+const reduxEnhancers
+  = process.env.NODE_ENV === 'production'
+  ? Redux.compose( Redux.applyMiddleware(sagaMiddleware))
+  : Redux.compose(
+    Redux.applyMiddleware(sagaMiddleware),
+      /* eslint-disable no-underscore-dangle */
+      (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+      (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+      /* eslint-enable */
+    )
 
 const store = Redux.createStore(
   AppMessage.patch,
