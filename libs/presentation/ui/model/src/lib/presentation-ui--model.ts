@@ -1,7 +1,9 @@
 import * as Job from '@domain/entity/job'
+import * as Redux from 'redux'
 
 export type Model = {
-  repos: { job: Job.Repo.Repository }
+	repos: { job: Job.Repo.Repository }
+	store: Redux.Store
 }
 
 /**
@@ -12,9 +14,25 @@ export type Model = {
  * @returns A new state model.
  */
 export const create = ({
-  repos = { job: Job.Repo.create({}) },
+	store,
+	repos = {job: Job.Repo.create({})},
 }: Partial<Model>): Model => ({
+	store,
   repos,
+})
+
+/** Get the store from the given state model. */
+export const getStore = (model: Model): Redux.Store =>
+  model.store
+
+/** Set the repo value of the given state model. */
+export type SetStore
+  =  (v: Redux.Store)
+  => (s: Model)
+  => Model
+export const setStore: SetStore = store => model => ({
+  ...model,
+  store,
 })
 
 /** Get the repos from the given state model. */
