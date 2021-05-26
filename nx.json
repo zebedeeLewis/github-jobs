@@ -27,6 +27,34 @@
     },
     "application-service-command": {
       "tags": []
+    },
+    "presentation-ui--model": {
+      "tags": []
+    },
+    "presentation-ui--message": {
+      "tags": []
+    },
+    "presentation-ui--state": {
+      "tags": []
+    },
+    "presentation-ui--theme": {
+      "tags": []
+    },
+    "presentation-ui--utils": {
+      "tags": []
+    },
+    "presentation-ui--instruction": {
+      "tags": []
+    },
+    "presentation-ui-component": {
+      "tags": []
+    },
+    "github-jobs": {
+      "tags": []
+    },
+    "github-jobs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["github-jobs"]
     }
   }
 }

@@ -21,6 +21,27 @@
       ],
       "@application/service/command": [
         "libs/application/service/command/src/index.ts"
+      ],
+      "@presentation/ui/model": [
+        "libs/presentation/ui/model/src/index.ts"
+      ],
+      "@presentation/ui/message": [
+        "libs/presentation/ui/message/src/index.ts"
+      ],
+      "@presentation/ui/state": [
+        "libs/presentation/ui/state/src/index.ts"
+      ],
+      "@presentation/ui/theme": [
+        "libs/presentation/ui/theme/src/index.ts"
+      ],
+      "@presentation/ui/utils": [
+        "libs/presentation/ui/utils/src/index.ts"
+      ],
+      "@presentation/ui/instruction": [
+        "libs/presentation/ui/instruction/src/index.ts"
+      ],
+      "@presentation/ui/component": [
+        "libs/presentation/ui/component/src/index.ts"
       ]
     }
   },

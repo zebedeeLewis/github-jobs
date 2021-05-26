@@ -3,6 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
+  "defaultProject": "github-jobs",
   "generators": {
     "@nrwl/react": {
       "application": {
@@ -83,6 +84,261 @@
           "options": {
             "jestConfig": "libs/application/service/command/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui--model": {
+      "root": "libs/presentation/ui//model",
+      "sourceRoot": "libs/presentation/ui/model/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/presentation/ui//model/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/model"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui--message": {
+      "root": "libs/presentation/ui//message",
+      "sourceRoot": "libs/presentation/ui/message/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/presentation/ui//message/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/message"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/message/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui--state": {
+      "root": "libs/presentation/ui//state",
+      "sourceRoot": "libs/presentation/ui/state/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/presentation/ui//state/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/state"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/state/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui--theme": {
+      "root": "libs/presentation/ui//theme",
+      "sourceRoot": "libs/presentation/ui/theme/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/presentation/ui//theme/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/theme"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/theme/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui--utils": {
+      "root": "libs/presentation/ui//utils",
+      "sourceRoot": "libs/presentation/ui/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/presentation/ui//utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/utils"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui--instruction": {
+      "root": "libs/presentation/ui//instruction",
+      "sourceRoot": "libs/presentation/ui/instruction/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/presentation/ui//instruction/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/instruction"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/instruction/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation-ui-component": {
+      "root": "libs/presentation/ui/component",
+      "sourceRoot": "libs/presentation/ui/component/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/presentation/ui/component/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/ui/component"],
+          "options": {
+            "jestConfig": "libs/presentation/ui/component/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "github-jobs": {
+      "root": "apps/github-jobs",
+      "sourceRoot": "apps/github-jobs/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/github-jobs",
+            "index": "apps/github-jobs/src/index.html",
+            "main": "apps/github-jobs/src/main.tsx",
+            "polyfills": "apps/github-jobs/src/polyfills.ts",
+            "tsConfig": "apps/github-jobs/tsconfig.app.json",
+            "assets": [
+              "apps/github-jobs/src/favicon.ico",
+              "apps/github-jobs/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/github-jobs/src/environments/environment.ts",
+                  "with": "apps/github-jobs/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "github-jobs:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "github-jobs:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/github-jobs/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/github-jobs"],
+          "options": {
+            "jestConfig": "apps/github-jobs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "github-jobs-e2e": {
+      "root": "apps/github-jobs-e2e",
+      "sourceRoot": "apps/github-jobs-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/github-jobs-e2e/cypress.json",
+            "tsConfig": "apps/github-jobs-e2e/tsconfig.e2e.json",
+            "devServerTarget": "github-jobs:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "github-jobs:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/github-jobs-e2e/**/*.{js,ts}"]
           }
         }
       }
