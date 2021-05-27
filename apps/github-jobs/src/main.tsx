@@ -41,14 +41,14 @@ const setup = (
   /* eslint-disable no-underscore-dangle */
   const reduxConsoleEnhancer
     = process.env.NODE_ENV === 'production'
-    ? undefined
-    : (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    ? []
+    : [(window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+       (window as any).__REDUX_DEVTOOLS_EXTENSION__()]
   /* eslint-enable no-underscore-dangle */
 
   const store = createEnhancedStore(
     [ Redux.applyMiddleware(sagaMiddleware)
-    , reduxConsoleEnhancer
+    , ... reduxConsoleEnhancer
     ]
   )
 
