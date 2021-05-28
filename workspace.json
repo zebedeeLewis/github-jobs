@@ -42,29 +42,6 @@
         }
       }
     },
-    "domain--data-access-object": {
-      "root": "libs/domain//data-access-object",
-      "sourceRoot": "libs/domain/data-access-object/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/domain//data-access-object/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/domain/data-access-object"],
-          "options": {
-            "jestConfig": "libs/domain/data-access-object/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "application-service-command": {
       "root": "libs/application/service/command",
       "sourceRoot": "libs/application/service/command/src",
@@ -339,6 +316,31 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/github-jobs-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "infrastructure-data-access-object-job": {
+      "root": "libs/infrastructure/data-access-object/job",
+      "sourceRoot": "libs/infrastructure/data-access-object/job/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/infrastructure/data-access-object/job/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/infrastructure/data-access-object/job"
+          ],
+          "options": {
+            "jestConfig": "libs/infrastructure/data-access-object/job/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

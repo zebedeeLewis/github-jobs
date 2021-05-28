@@ -1,7 +1,6 @@
 module.exports = {
   projects: [
     '<rootDir>/libs/domain/entity//job',
-    '<rootDir>/libs/domain//data-access-object',
     '<rootDir>/libs/application/service/command',
     '<rootDir>/libs/presentation/ui//model',
     '<rootDir>/libs/presentation/ui//message',
@@ -11,5 +10,6 @@ module.exports = {
     '<rootDir>/libs/presentation/ui//instruction',
     '<rootDir>/libs/presentation/ui/component',
     '<rootDir>/apps/github-jobs',
+    '<rootDir>/libs/infrastructure/data-access-object/job',
   ],
 }

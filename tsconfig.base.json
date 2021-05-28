@@ -42,6 +42,9 @@
       ],
       "@presentation/ui/component": [
         "libs/presentation/ui/component/src/index.ts"
+      ],
+      "@infrastructure/data-access-object/job": [
+        "libs/infrastructure/data-access-object/job/src/index.ts"
       ]
     }
   },

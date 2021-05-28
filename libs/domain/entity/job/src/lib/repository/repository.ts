@@ -1,6 +1,5 @@
 import * as Job from '../domain-entity--job'
-import * as DAO from '@domain/data-access-object'
-import * as Generate from '../generate'
+import * as DAO from '../data-access-object-interface'
 
 export interface FilterSpec {
   id: string
@@ -77,7 +76,5 @@ export const list = async (
   count: number,
   repo: Repository,
 ): Promise<Array<Job.Model>> => {
-
-  //return await repo.dao.read()
-  return Generate.dataSet
+  return await repo.dao.read(undefined, start, count)
 }

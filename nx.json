@@ -22,9 +22,6 @@
     "domain-entity--job": {
       "tags": []
     },
-    "domain--data-access-object": {
-      "tags": []
-    },
     "application-service-command": {
       "tags": []
     },
@@ -55,6 +52,9 @@
     "github-jobs-e2e": {
       "tags": [],
       "implicitDependencies": ["github-jobs"]
+    },
+    "infrastructure-data-access-object-job": {
+      "tags": []
     }
   }
 }

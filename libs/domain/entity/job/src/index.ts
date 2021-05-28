@@ -1,5 +1,6 @@
 import * as Generate from './lib/generate'
 import * as Repo from './lib/repository'
+import * as DAO from './lib/data-access-object-interface'
 
 import {
   JobType,
@@ -49,10 +50,10 @@ export {
   getCompanyUrl,
   setCompanyUrl,
   create,
-  Generate,
-  Repo,
+	Generate,
+	Repo,
+	DAO,
 }
 
 import type { Model } from './lib/domain-entity--job'
-
 export type { Model }

@@ -2,8 +2,8 @@ import * as Job from '@domain/entity/job'
 import * as Redux from 'redux'
 
 export type Model = {
-	repos: { job: Job.Repo.Repository }
-	store: Redux.Store
+  repos: { job: Job.Repo.Repository }
+  store: Redux.Store
 }
 
 /**
@@ -14,10 +14,10 @@ export type Model = {
  * @returns A new state model.
  */
 export const create = ({
-	store,
-	repos = {job: Job.Repo.create({})},
+  store,
+  repos = {job: Job.Repo.create({})},
 }: Partial<Model>): Model => ({
-	store,
+  store,
   repos,
 })
 

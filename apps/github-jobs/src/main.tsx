@@ -4,13 +4,25 @@ import * as ReactDOM from 'react-dom'
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
 import * as ReduxSaga from 'redux-saga'
+import * as Mirage from 'miragejs'
 import createSagaMiddleware from 'redux-saga'
 
 import App from './app'
-import * as AppModel from '@presentation/ui/model'
+
+import * as Job from '@domain/entity/job'
+import * as UiModel from '@presentation/ui/model'
 import * as AppInstruction from '@presentation/ui/instruction'
 import * as AppMessage from '@presentation/ui/message'
 import * as AppState from '@presentation/ui/state'
+import * as JobDao from '@infrastructure/data-access-object/job'
+
+const createMockApiServer = () => {
+  Mirage.createServer({
+    routes() {
+      this.get('/api/job', () => Job.Generate.dataSet)
+    }
+  })
+}
 
 /**
  * Setup the redux store.
@@ -37,7 +49,7 @@ const createEnhancedStore = (
  */
 const setup = (
   sagaMiddleware: ReduxSaga.SagaMiddleware
-): AppModel.Model => {
+): UiModel.Model => {
   /* eslint-disable no-underscore-dangle */
   const reduxConsoleEnhancer
     = process.env.NODE_ENV === 'production'
@@ -52,7 +64,9 @@ const setup = (
     ]
   )
 
-  return AppModel.create({store})
+  const repos = { job: Job.Repo.create({dao: JobDao.create()}) }
+
+  return UiModel.create({store, repos})
 }
 
 /**
@@ -97,17 +111,17 @@ const runSagas: RunSagas = sagaMiddleware => sagas => {
  */
 const preStart = (
   sagaMiddleware: ReduxSaga.SagaMiddleware,
-  appModel: AppModel.Model
+  uiModel: UiModel.Model
 ) => {
-  const store = AppModel.getStore(appModel)
+  createMockApiServer() // Development only
 
   runSagas(sagaMiddleware)([
-    AppInstruction.configLoadJobsInstruction(appModel)
+    AppInstruction.contenxtualizeLoadJobsSaga(uiModel)
   ])
 
+  const store = UiModel.getStore(uiModel)
   loadInitialData(store)
 }
-
 
 /**
  * Start the ui app.
@@ -132,10 +146,10 @@ const start = (store: Redux.Store) => {
  */
 const run = () => {
   const sagaMiddleware = createSagaMiddleware()
-  const appModel = setup(sagaMiddleware)
-  const store = AppModel.getStore(appModel)
+  const uiModel = setup(sagaMiddleware)
+  const store = UiModel.getStore(uiModel)
 
-  preStart(sagaMiddleware, appModel)
+  preStart(sagaMiddleware, uiModel)
   start(store)
 }
 

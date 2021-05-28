@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'domain--data-access-object',
-  preset: '../../../jest.preset.js',
+  displayName: 'infrastructure-data-access-object-job',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../coverage/libs/domain//data-access-object',
+    '../../../../coverage/libs/infrastructure/data-access-object/job',
 }
