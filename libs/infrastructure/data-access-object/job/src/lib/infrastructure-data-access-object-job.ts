@@ -1,5 +1,4 @@
 import * as Job from '@domain/entity/job'
-//import * as DAOI from '@domain/data-access-object'
 
 export const create = (): Job.DAO.DAO => {
   return {
@@ -8,12 +7,28 @@ export const create = (): Job.DAO.DAO => {
       console.log()
     },
 
-    /**
-     * Get one or more job items from the api.
-     * TODO!!!
-     * */
-    async read(id, pageNumber?, pageSize?) {
-      const path = `/api/job${id ? '/' + id : ''}`
+    /** TODO!!! */
+    async read(pageNumber, pageSize, filters) {
+      const queryParams
+        = Object
+        .entries(filters)
+        .reduce(
+          (_queryParam, [param, value]) => (
+            `${_queryParam}${!_queryParam ? '?' : '&'}${param}=${value}`
+          ),
+          ''
+        )
+
+      const path = `/api/job${queryParams}`
+      const response = await fetch(path)
+      const jobs = response.json()
+
+      return jobs
+    },
+
+    /** TODO!!! */
+    async readJobWithId(id) {
+      const path = `/api/job/${id}`
       const response = await fetch(path)
       const jobs = response.json()
 

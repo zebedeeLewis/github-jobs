@@ -19,7 +19,20 @@ import * as JobDao from '@infrastructure/data-access-object/job'
 const createMockApiServer = () => {
   Mirage.createServer({
     routes() {
-      this.get('/api/job', () => Job.Generate.dataSet)
+      this.get('/api/job', (schema, request) => {
+        const { jobType
+              , title
+              , location
+              } = request.queryParams
+
+        const jobs = Job.Generate.dataSet
+
+        return jobs.filter( job => (
+             ( !title || (new RegExp(title, 'i')).test(Job.getTitle(job)) )
+          && ( !jobType || Job.getJobType(job) === jobType)
+          && ( !location || (new RegExp(location, 'i')).test(Job.getLocation(job)) )
+        ))
+      })
     }
   })
 }
@@ -113,10 +126,11 @@ const preStart = (
   sagaMiddleware: ReduxSaga.SagaMiddleware,
   uiModel: UiModel.Model
 ) => {
-  createMockApiServer() // Development only
+  createMockApiServer() // Development only or until I build the Api
 
   runSagas(sagaMiddleware)([
-    AppInstruction.contenxtualizeLoadJobsSaga(uiModel)
+    AppInstruction.createLoadJobsSaga(uiModel),
+    AppInstruction.createFilterJobsSaga(uiModel),
   ])
 
   const store = UiModel.getStore(uiModel)

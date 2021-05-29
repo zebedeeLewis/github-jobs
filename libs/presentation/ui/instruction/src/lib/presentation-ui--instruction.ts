@@ -1,7 +1,7 @@
 import * as _ from 'underscore'
 import * as ReduxSaga from 'redux-saga/effects'
 import * as Job from '@domain/entity/job'
-import * as AppMessage from '@presentation/ui/message'
+import * as UiMessage from '@presentation/ui/message'
 import * as AppModel from '@presentation/ui/model'
 import * as AppCommand from '@application/service/command'
 import * as UiState from '@presentation/ui/state'
@@ -15,9 +15,10 @@ import * as UiState from '@presentation/ui/state'
  */
 export function* loadJobs(
   app: AppModel.Model,
-  msg: AppMessage.LOAD_JOBS_COMMAND
+  msg: UiMessage.LoadJobsCommand
 ) {
   const currentPage = yield ReduxSaga.select(UiState.getCurrentPage)
+  const filters = yield ReduxSaga.select(UiState.getFilters)
   const pageSize = 10 // TODO: get this value from elsewhere
   const repos = AppModel.getRepos(app)
 
@@ -26,12 +27,13 @@ export function* loadJobs(
       AppCommand.viewJobList,
       currentPage,
       pageSize,
+      filters,
       repos.job
     )
 
-    yield ReduxSaga.put(AppMessage.jobsLoaded(jobs))
+    yield ReduxSaga.put(UiMessage.jobsLoaded(jobs))
   } catch (e) {
-    yield ReduxSaga.put(AppMessage.jobsFailedToLoad("I don't know"))
+    yield ReduxSaga.put(UiMessage.jobsFailedToLoad("I don't know"))
   }
 }
 
@@ -39,10 +41,18 @@ export function* loadJobs(
  * Binds the ui model parameter of the loadJobs saga. In other words,
  * add the ui context to the loadJobs saga.
  */
-export const contenxtualizeLoadJobsSaga
+export const createLoadJobsSaga
   = (app: AppModel.Model) => function* loadJobsSaga() {
     yield ReduxSaga.takeLatest(
-      AppMessage.LOAD_JOBS,
+      UiMessage.LOAD_JOBS,
+      _.partial(loadJobs, app)
+    )
+  }
+
+export const createFilterJobsSaga
+  = (app: AppModel.Model) => function* loadJobsSaga() {
+    yield ReduxSaga.takeLatest(
+      UiMessage.APPLY_FILTERS,
       _.partial(loadJobs, app)
     )
   }

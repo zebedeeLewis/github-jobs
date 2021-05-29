@@ -22,7 +22,7 @@ import {
   setJobData,
   isLoading,
 } from './lib/presentation-ui--state'
-import type { State } from './lib/presentation-ui--state'
+import type { State, Data } from './lib/presentation-ui--state'
 
 export {
   DARK_MODE_ON,
@@ -49,4 +49,4 @@ export {
   isLoading,
 }
 
-export type { State }
+export type { State, Data }

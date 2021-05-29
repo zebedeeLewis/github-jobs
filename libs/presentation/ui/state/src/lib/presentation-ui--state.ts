@@ -55,7 +55,7 @@ export const setJobDataStatus: SetJobDataStatus
 
 export type State = {
   jobs: Data<Array<Job.Model>>
-  filters: unknown 
+  filters: Job.DAO.Filters 
   darkModeToggle: boolean
   currentPage: number
   pageSize: number
@@ -70,7 +70,7 @@ export type State = {
  */
 export const create = ({
   jobs = { status: INIT, value: [] },
-  filters = Job.Repo.list,
+  filters = Job.DAO.DEFAULT_FILTER,
   darkModeToggle = DARK_MODE_OFF,
   currentPage = NO_PAGE_LOADED,
   pageSize = DEFAULT_PAGE_SIZE,
@@ -113,12 +113,12 @@ export const setJobs: SetJobs
   })
 
 /** Get the filters from the given state model. */
-export const getFilters = (state: State): unknown =>
+export const getFilters = (state: State): Job.DAO.Filters =>
   state.filters
 
 /** Set the filters value of the given state model. */
 export type SetFilters
-  =  (v: unknown)
+  =  (v: Job.DAO.Filters)
   => (s: State)
   => State
 export const setFilters: SetFilters

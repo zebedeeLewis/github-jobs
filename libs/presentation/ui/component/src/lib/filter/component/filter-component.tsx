@@ -42,7 +42,7 @@ export const FilterComponent = ({
   }
 
   const dialogProps = {
-		isOpen: isDialogOpen,
+    isOpen: isDialogOpen,
     location,
     fullTimeOnly,
     handleDialogClose,

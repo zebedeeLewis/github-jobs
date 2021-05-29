@@ -23,7 +23,7 @@ export type Props = {
   toggleDarkMode: () => void
   isLoadingJobs: boolean
   loadMoreJobs: () => void
-  handleSearchButtonClick: () => void
+  handleSearchButtonClick: (f: Job.DAO.Filters) => void
 }
 
 export const AppComponent = ({

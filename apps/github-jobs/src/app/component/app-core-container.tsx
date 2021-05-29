@@ -33,8 +33,8 @@ export const AppContainer = () => {
       dispatch(AppMessage.loadJobs(currentPage))
     },
 
-    handleSearchButtonClick() {
-      dispatch(AppMessage.applyFilters('s'))
+    handleSearchButtonClick(filters) {
+      dispatch(AppMessage.applyFilters(filters))
     }
   }
 

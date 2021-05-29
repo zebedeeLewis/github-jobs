@@ -8,7 +8,7 @@ export type Props = {
   jobs: Array<Job.Model>
   isLoadingJobs: boolean
   loadMoreJobs: () => void
-  handleSearchButtonClick: () => void
+  handleSearchButtonClick: (f: Job.DAO.Filters) => void
 }
 
 export const HomePageComponent = ({

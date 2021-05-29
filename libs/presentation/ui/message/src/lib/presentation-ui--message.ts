@@ -1,134 +1,48 @@
-import * as _ from 'underscore'
-import * as Job from '@domain/entity/job'
 import * as State from '@presentation/ui/state'
 
-export type Model<T, P> = { type: T; payload: P }
+import {
+  TOGGLE_DARK_MODE_OFF,
+  ToggleDarkModeOffCommand,
+  handleToggleDarkModeOff
+} from './toggle-dark-mode-off'
 
-export const TOGGLE_DARK_MODE_OFF = 'TOGGLE_DARK_MODE_OFF'
-export type TOGGLE_DARK_MODE_OFF_COMMAND = Model<
-  typeof TOGGLE_DARK_MODE_OFF,
-  undefined
->
-/**
- * This command message is used to direct the system to turn off
- * dark mode.
- */
-export const toggleDarkModeOff = (): TOGGLE_DARK_MODE_OFF_COMMAND => ({
-  type: TOGGLE_DARK_MODE_OFF,
-  payload: undefined,
-})
+import {
+  TOGGLE_DARK_MODE_ON,
+  ToggleDarkModeOnCommand,
+  handleToggleDarkModeOn,
+} from './toggle-dark-mode-on'
 
-export const DARK_MODE_OFF = 'DARK_MODE_OFF'
-export type DARK_MODE_OFF_EVENT = Model<typeof DARK_MODE_OFF, undefined>
-/**
- * This event message is used to alert the system that dark mode has
- * been toggled off.
- */
-export const darkModeOff = (): DARK_MODE_OFF_EVENT => ({
-  type: DARK_MODE_OFF,
-  payload: undefined,
-})
+import {
+  LOAD_JOBS,
+  LoadJobsCommand,
+  handleLoadJobs,
+} from './load-jobs'
 
-export const TOGGLE_DARK_MODE_ON = 'TOGGLE_DARK_MODE_ON'
-export type TOGGLE_DARK_MODE_ON_COMMAND = Model<
-  typeof TOGGLE_DARK_MODE_ON,
-  undefined
->
-/**
- * This command message is used to direct the system to toggle dark mode.
- */
-export const toggleDarkModeOn = (): TOGGLE_DARK_MODE_ON_COMMAND => ({
-  type: TOGGLE_DARK_MODE_ON,
-  payload: undefined,
-})
+import {
+  JOBS_LOADED,
+  JobsLoadedEvent,
+  handleJobsLoaded,
+} from './jobs-loaded'
 
-export const DARK_MODE_ON = 'DARK_MODE_ON'
-export type DARK_MODE_ON_EVENT = Model<typeof DARK_MODE_ON, undefined>
-/**
- * This event message is used to alert the system that dark mode has
- * been toggled on.
- */
-export const darkModeOn = (): DARK_MODE_ON_EVENT => ({
-  type: DARK_MODE_ON,
-  payload: undefined,
-})
+import {
+  JOBS_FAILED_TO_LOAD,
+  JobsFailedToLoadEvent,
+  handleJobsFailedToLoad,
+} from './jobs-failed-to-load'
 
-export const LOAD_JOBS = 'LOAD_JOBS'
-export type LOAD_JOBS_COMMAND = Model<typeof LOAD_JOBS, number>
-/**
- * This command message is used to direct the system to load the jobs
- * from the given page after applying the given filters.
- */
-export const loadJobs = (pageNumber: number): LOAD_JOBS_COMMAND => ({
-  type: LOAD_JOBS,
-  payload: pageNumber,
-})
-
-export const JOBS_LOADED = 'JOBS_LOADED'
-export type JOBS_LOADED_EVENT = Model<
-  typeof JOBS_LOADED,
-  Array<Job.Model>
->
-/**
- * This event message is used to alert the system that the operation to
- * load jobs from the repository was successful.
- *
- * @param jobs - the jobs that were loaded from the repository
- * @return a new jobs loaded event message
- */
-export const jobsLoaded = (
-  jobs: Array<Job.Model>
-): JOBS_LOADED_EVENT => ({
-  type: JOBS_LOADED,
-  payload: jobs,
-})
-
-export const JOBS_FAILED_TO_LOAD = 'JOBS_FAILED_TO_LOAD'
-export type JOBS_FAILED_TO_LOAD_EVENT = Model<
-  typeof JOBS_FAILED_TO_LOAD,
-  string
->
-/**
- * This event messge is used to alert the system that the operation to
- * load jobs from the repository has failed.
- *
- * @param reason - the reason why the load failed
- * @returns a new "jobs load failed" event message.
- */
-
-export const jobsFailedToLoad = (
-  reason: string
-): JOBS_FAILED_TO_LOAD_EVENT => ({
-  type: JOBS_FAILED_TO_LOAD,
-  payload: reason,
-})
-
-
-export const APPLY_FILTERS = 'APPLY_FILTERS'
-export type APPLY_FILTERS_COMMAND = Model<
-  typeof APPLY_FILTERS,
-  unknown
->
-/**
- * This command message is used to direct the system to turn off
- * dark mode.
- */
-export const applyFilters =
-  (filters: unknown): APPLY_FILTERS_COMMAND => ({
-    type: APPLY_FILTERS,
-    payload: filters,
-  })
-
+import {
+  APPLY_FILTERS,
+  ApplyFiltersCommand,
+  handleApplyFilters,
+} from './apply-filters'
 
 export type Msg =
-  | LOAD_JOBS_COMMAND
-  | JOBS_LOADED_EVENT
-  | JOBS_FAILED_TO_LOAD_EVENT
-  | TOGGLE_DARK_MODE_ON_COMMAND
-  | DARK_MODE_ON_EVENT
-  | TOGGLE_DARK_MODE_OFF_COMMAND
-  | DARK_MODE_OFF_EVENT
-  | APPLY_FILTERS_COMMAND
+  | LoadJobsCommand
+  | JobsLoadedEvent
+  | JobsFailedToLoadEvent
+  | ToggleDarkModeOnCommand
+  | ToggleDarkModeOffCommand
+  | ApplyFiltersCommand
 
 /**
  * Updates the given state according to the given action.
@@ -142,27 +56,17 @@ export const patch = (
   state: State.State = State.create({}),
   msg: Msg
 ): State.State => {
-  const currentJobData = State.getJobs(state)
-  const currentJobs = State.getJobData(currentJobData)
-
   switch (msg.type) {
     case TOGGLE_DARK_MODE_ON:
-      return State.setDarkModeToggle(State.DARK_MODE_ON)(state)
+      return handleToggleDarkModeOn(state)(msg)
     case TOGGLE_DARK_MODE_OFF:
-      return State.setDarkModeToggle(State.DARK_MODE_OFF)(state)
+      return handleToggleDarkModeOff(state)(msg)
     case LOAD_JOBS:
-      return State.setJobs(
-        State.setJobDataStatus(State.LOADING)(State.getJobs(state))
-      )(state)
+      return handleLoadJobs(state)(msg)
     case JOBS_LOADED:
-      return State.setJobs(
-        _.compose(
-          State.setJobData([...currentJobs, ...msg.payload]),
-          State.setJobDataStatus(State.LOADING_DONE)
-        )(currentJobData)
-      )(state)
+      return handleJobsLoaded(state)(msg)
     case APPLY_FILTERS:
-      return state
+      return handleApplyFilters(state)(msg)
     default:
       return state
   }

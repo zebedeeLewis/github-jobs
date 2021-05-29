@@ -74,7 +74,9 @@ export const setRepoType: SetRepoType
 export const list = async (
   start: number,
   count: number,
+  filters: DAO.Filters,
   repo: Repository,
 ): Promise<Array<Job.Model>> => {
-  return await repo.dao.read(undefined, start, count)
+  return await repo.dao.read(start, count, filters)
 }
+

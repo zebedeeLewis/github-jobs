@@ -4,9 +4,10 @@ import * as Job from '@domain/entity/job'
 export const viewJobList = async(
   pageNumber: number,
   pageSize: number,
+  filters: Job.DAO.Filters,
   repo: Job.Repo.Repository,
 ): Promise<Array<Job.Model>> => {
   const start = pageNumber * pageSize
 
-  return await Job.Repo.list(start, pageSize, repo)
+  return await Job.Repo.list(start, pageSize, filters, repo)
 }

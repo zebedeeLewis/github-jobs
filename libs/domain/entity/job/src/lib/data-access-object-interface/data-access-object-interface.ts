@@ -1,24 +1,48 @@
 import * as Job from '../domain-entity--job'
 
 /**
- * Retrieves data from some data storage location. This could be a
+ * Describes a set of filters to apply to a query to the storage
+ * request.
+ */
+export type Filters = {
+  title: string
+  jobType: Job.JobType | ''
+  location: string
+}
+
+export const DEFAULT_FILTER: Filters
+  = { title: ''
+    , jobType: ''
+    , location: ''
+    }
+
+/**
+ * Retrieve job data from some data storage location. This could be a
  * database, a file, an API etc.
  *
- * @param id - The id of the job we want.
  * @param pageNumber - the page we want to retrieve. 
  * @param pageSize - the number of jobs we want to retrieve.
+ * @param filters - a set of filters to apply to the returned job list.
  *
- * @returns an array of entities of a single type. If the id is given,
- * the array will only contain the job with the matching id. If the
- * id argument is undefined, the array will contain the number of entities
- * specified by the "pageSize" attribute, starting from the given
- * "pageNumber".
+ * @returns an array containing the number of jobs specified by
+ * the "pageSize" attribute, starting from the given "pageNumber".
  */
 export type Read = (
-  id: string | undefined,
-  pageNumber?: number,
-  pageSize?: number
+  pageNumber: number,
+  pageSize: number,
+  filters: Filters,
 ) => Promise<Array<Job.Model>>
+
+/**
+ * Retirive a single job from storage.
+ *
+ * @param id - The id of the job we want.
+ * @returns the job item with the given id.
+ *
+ */
+export type ReadJobWithId = (
+  id: string
+) => Promise<Job.Model>
 
 /**
  * Create one or more data entities in storage.
@@ -55,6 +79,7 @@ export type Delete = (
 export interface DAO {
   create: Create
   read: Read
+  readJobWithId: ReadJobWithId
   update: Update
   delete: Delete
 }
