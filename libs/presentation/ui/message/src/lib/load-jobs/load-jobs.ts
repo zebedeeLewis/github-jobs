@@ -8,19 +8,18 @@ export type LoadJobsCommand = {type: typeof LOAD_JOBS, payload: number}
  * This command message is used to direct the system to load the jobs
  * from the given page after applying the given filters.
  */
-type loadJobs_s = (p: number) => LoadJobsCommand
-export const loadJobs: loadJobs_s = pageNumber => ({
-  type: LOAD_JOBS,
-  payload: pageNumber,
-})
+type loadJobs = (p: number) => LoadJobsCommand
+export const loadJobs: loadJobs
+  = pageNumber => ({
+      type: LOAD_JOBS,
+      payload: pageNumber,
+    })
+
 
 /** Handle the load jobs command message */
-type handleLoadJobs_s
+type handleLoadJobs
   =  (s: State.State)
   => (m: LoadJobsCommand)
   => State.State
-
-export const handleLoadJobs: handleLoadJobs_s = state => msg =>
-  State.setJobs(
-    State.setJobDataStatus(State.LOADING)(State.getJobs(state))
-  )(state)
+export const handleLoadJobs: handleLoadJobs
+  = state => msg => State.setJobStatus(State.LOADING)(state)

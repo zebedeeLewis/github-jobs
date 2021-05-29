@@ -6,6 +6,7 @@ export type JobsFailedToLoadEvent = {
   payload: string
 }
 
+
 /**
  * This event messge is used to alert the system that the operation to
  * load jobs from the repository has failed.
@@ -13,20 +14,20 @@ export type JobsFailedToLoadEvent = {
  * @param reason - the reason why the load failed
  * @returns a new "jobs load failed" event message.
  */
-
-type jobsFailedToLoad_s
+type jobsFailedToLoad
   =  (reason: string)
   => JobsFailedToLoadEvent
-export const jobsFailedToLoad: jobsFailedToLoad_s
+export const jobsFailedToLoad: jobsFailedToLoad
   = ( reason: string): JobsFailedToLoadEvent => ({
-    type: JOBS_FAILED_TO_LOAD,
-    payload: reason,
-  })
+      type: JOBS_FAILED_TO_LOAD,
+      payload: reason,
+    })
+
 
 /** Handle the jobs failed to load event message TODO!!! */
-type handleJobsFailedToLoad_s
+type handleJobsFailedToLoad
   =  (s: State.State)
   => (m: JobsFailedToLoadEvent)
   => State.State
-export const handleJobsFailedToLoad: handleJobsFailedToLoad_s
+export const handleJobsFailedToLoad: handleJobsFailedToLoad
   = state => msg => state

@@ -1,22 +1,19 @@
 import _ from 'underscore'
 import * as ReactRedux from 'react-redux'
-import * as AppState from '@presentation/ui/state'
-import * as AppMessage from '@presentation/ui/message'
+import * as UiState from '@presentation/ui/state'
+import * as UiMessage from '@presentation/ui/message'
 import { AppComponent, Props } from './app-core-component'
 import { useSelector } from 'react-redux'
 
+
 export const AppContainer = () => {
   const dispatch = ReactRedux.useDispatch()
-  const isDarkModeOn = useSelector(AppState.getDarkModeToggle)
-  const jobLoadStatus = AppState.getJobDataStatus(
-    useSelector(AppState.getJobs)
-  )
-  const isLoadingJobs = jobLoadStatus === AppState.LOADING
-  const jobs = AppState.getJobData(
-    useSelector(AppState.getJobs)
-  )
+  const isDarkModeOn = useSelector(UiState.getDarkModeToggle)
+  const jobLoadStatus = useSelector(UiState.getDataStatus)
+  const isLoadingJobs = jobLoadStatus === UiState.LOADING
+  const jobs = useSelector(UiState.getJobList)
 
-  const currentPage = useSelector(AppState.getCurrentPage)
+  const currentPage = useSelector(UiState.getCurrentPage)
 
   const props: Props = {
     jobs,
@@ -25,18 +22,19 @@ export const AppContainer = () => {
 
     toggleDarkMode() {
       isDarkModeOn
-        ? dispatch(AppMessage.toggleDarkModeOff())
-        : dispatch(AppMessage.toggleDarkModeOn())
+        ? dispatch(UiMessage.toggleDarkModeOff())
+        : dispatch(UiMessage.toggleDarkModeOn())
     },
 
     loadMoreJobs() {
-      dispatch(AppMessage.loadJobs(currentPage))
+      dispatch(UiMessage.loadJobs(currentPage))
     },
 
     handleSearchButtonClick(filters) {
-      dispatch(AppMessage.applyFilters(filters))
+      dispatch(UiMessage.applyFilters(filters))
     }
   }
 
   return <AppComponent {...props} />
 }
+

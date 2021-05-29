@@ -1,4 +1,5 @@
 import React from 'react'
+import { LocationOn, FilterList, Search } from '@material-ui/icons'
 import {
   Hidden,
   Grid,
@@ -11,7 +12,6 @@ import {
   FormControl,
   Divider,
 } from '@material-ui/core'
-import { LocationOn, FilterList, Search } from '@material-ui/icons'
 
 import { useStyles } from './filter-input-component.style'
 
@@ -94,7 +94,7 @@ export const FilterInputComponent = ({
         <Divider flexItem orientation="vertical" />
         <Grid
           item
-					container
+          container
           alignItems="center"
           xs="auto"
           sm={3}

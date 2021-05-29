@@ -1,4 +1,4 @@
-import * as _ from 'underscore'
+import _ from 'underscore'
 import * as React from 'react'
 import {FilterComponent} from './filter-component'
 import * as State from '../state'
@@ -13,7 +13,18 @@ export const FilterContainer = ({
 }: Props) => {
   const [state, setState] = React.useState(State.create({}))
 
+  const handleDialogClose = () => setState(
+    State.setDialogToggle(State.DIALOG_CLOSED)(state)
+  )
+
   const props = {
+    handleDialogClose,
+
+    isDialogOpen: State.getDialogToggle(state),
+    location: State.getLocation(state),
+    fullTimeOnly: State.getFullTimeOnly(state),
+    searchTerm: State.getSearchTerm(state),
+
     handleSearchButtonClick() {
       handleSearchButtonClick({
         title: State.getSearchTerm(state),
@@ -25,22 +36,16 @@ export const FilterContainer = ({
       })
     },
 
-    isDialogOpen: State.getDialogToggle(state),
-    location: State.getLocation(state),
-    fullTimeOnly: State.getFullTimeOnly(state),
-    searchTerm: State.getSearchTerm(state),
-    handleDialogClose: () => setState(
-      State.setDialogToggle(State.DIALOG_CLOSED)(state)
-    ),
-
     handleLocationChange: (e: React.ChangeEvent<HTMLInputElement>) =>
       setState( State.setLocation(e.target.value)(state) ),
 
     handleFullTimeOnlyChange: (e: React.ChangeEvent<HTMLInputElement>) =>
       setState( State.setFullTimeOnly(e.target.checked)(state) ),
 
-    handleFilterButtonClick: () =>
-      setState( State.setDialogToggle(State.DIALOG_OPEN)(state) ),
+    handleFilterButtonClick: () => {
+      setState( State.setDialogToggle(State.DIALOG_OPEN)(state) )
+      handleDialogClose()
+    },
 
     handleSearchTermChange: (e: React.ChangeEvent<HTMLInputElement>) =>
       setState( State.setSearchTerm(e.target.value)(state) ),

@@ -10,11 +10,13 @@ export type Filters = {
   location: string
 }
 
+
 export const DEFAULT_FILTER: Filters
   = { title: ''
     , jobType: ''
     , location: ''
     }
+
 
 /**
  * Retrieve job data from some data storage location. This could be a
@@ -33,6 +35,7 @@ export type Read = (
   filters: Filters,
 ) => Promise<Array<Job.Model>>
 
+
 /**
  * Retirive a single job from storage.
  *
@@ -44,6 +47,7 @@ export type ReadJobWithId = (
   id: string
 ) => Promise<Job.Model>
 
+
 /**
  * Create one or more data entities in storage.
  *
@@ -53,6 +57,7 @@ export type ReadJobWithId = (
 export type Create = (
   entities: Array<Job.Model>
 ) => void
+
 
 /**
  * Update one or more data entities in storage.
@@ -64,6 +69,7 @@ export type Update = (
   entities: Array<Job.Model>
 ) => void
 
+
 /**
  * Deletes a single job from storage.
  *
@@ -73,7 +79,6 @@ export type Update = (
 export type Delete = (
   id: string
 ) => void
-
 
 
 export interface DAO {

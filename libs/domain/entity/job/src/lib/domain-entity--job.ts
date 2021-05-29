@@ -9,6 +9,7 @@ export const DEFAULT_APPLICATION_INSTRUCTION =
   '<span style="color: red">No instructions</span>'
 export const DEFAULT_AVATAR_SRC = ''
 
+
 /**
  * What type of job. Is this a full time or part time job.
  */
@@ -16,6 +17,7 @@ export enum JobType {
   FULL_TIME = 'fullTime',
   PART_TIME = 'partTime',
 }
+
 
 /**
  * Represents a single job posting.
@@ -77,6 +79,7 @@ export interface Model {
   avatarSrc: string
 }
 
+
 /**
  * create a new job from the given input data.
  *
@@ -109,144 +112,184 @@ export const create = ({
     avatarSrc,
   })
 
+
 /** Get the applicationInstructions from the given job model. */
-export const getApplicationInstructions = (model: Model): string =>
-  model.applicationInstructions
+type getApplicationInstructions = (m: Model) => string
+export const getApplicationInstructions: getApplicationInstructions
+  = model =>
+    model.applicationInstructions
+
 
 /** Set the applicationInstructions of the given job model.*/
-export type SetApplicationInstructions
+export type setApplicationInstructions
   =  ( v: string)
   => (m: Model)
   => Model
-export const setApplicationInstructions: SetApplicationInstructions
+export const setApplicationInstructions: setApplicationInstructions
   = applicationInstructions => model => create({
-    ...model,
-    applicationInstructions,
-  })
+      ...model,
+      applicationInstructions,
+    })
+
 
 /** Get the description from the given job model.*/
-export const getDescription = (model: Model): string =>
-  model.description
+type getDescription = (m: Model) => string
+export const getDescription: getDescription
+  = model =>
+    model.description
+
 
 /** Set the description of the given job model. */
-export type SetDescription
+export type setDescription
   =  (v: string)
   => (m: Model)
   => Model
-export const setDescription: SetDescription
+export const setDescription: setDescription
   = description => model => create({
-    ...model,
-    description,
-  })
+      ...model,
+      description,
+    })
+
 
 /** Get the companyUrl from the given job model.*/
-export const getCompanyUrl = (model: Model): string => model.companyUrl
+type getCompanyUrl = (m: Model) => string
+export const getCompanyUrl: getCompanyUrl
+  = model => model.companyUrl
+
 
 /** Set the companyUrl of the given job model. */
-export type SetCompanyUrl
+export type setCompanyUrl
   =  (v: string)
   => (m: Model)
   => Model
-export const setCompanyUrl: SetCompanyUrl
+export const setCompanyUrl: setCompanyUrl
   = companyUrl => model => create({
-    ...model,
-    companyUrl,
-  })
+      ...model,
+      companyUrl,
+    })
+
 
 /** Get the avatarSrc from the given job model. */
-export const getAvatarSrc = (model: Model): string => model.avatarSrc
+type getAvatarSrc = (m: Model) => string
+export const getAvatarSrc: getAvatarSrc
+  = model => model.avatarSrc
+
 
 /** Set the avatarSrc of the given job model. */
-export type SetAvatarSrc
+export type setAvatarSrc
   =  (v: string)
   => (m: Model)
   => Model
-export const setAvatarSrc: SetAvatarSrc
+export const setAvatarSrc: setAvatarSrc
   = avatarSrc => model => create({
-    ...model,
-    avatarSrc,
-  })
+      ...model,
+      avatarSrc,
+    })
+
 
 /** Get the location from the given job model. */
-export const getLocation = (model: Model): string => model.location
+type getLocation = (m: Model) => string
+export const getLocation: getLocation
+  = model => model.location
+
 
 /** Set the location of the given job model. */
-export type SetLocation
+export type setLocation
   =  (v: string)
   => (m: Model)
   => Model
-export const setLocation: SetLocation
+export const setLocation: setLocation
   = location => model => create({
-    ...model,
-    location,
-  })
+      ...model,
+      location,
+    })
+
 
 /** Get the company from the given job model. */
-export const getCompany = (model: Model): string => model.company
+type getCompany = (m: Model) => string
+export const getCompany: getCompany
+  = model => model.company
+
 
 /** Set the company of the given job model. */
-export type SetCompany
+export type setCompany
   =  (v: string)
   => (m: Model)
   => Model
-export const setCompany: SetCompany
+export const setCompany: setCompany
   = company => model => create({
-    ...model,
-    company,
-  })
+      ...model,
+      company,
+    })
+
 
 /** Get the title from the given job model. */
-export const getTitle = (model: Model): string => model.title
+type getTitle = (m: Model) => string
+export const getTitle: getTitle
+  = model => model.title
+
 
 /** Set the title of the given job model. */
-export type SetTitle
+export type setTitle
   =  (v: string)
   => (m: Model)
   => Model
-export const setTitle: SetTitle
+export const setTitle: setTitle
   = title => model => create({
-    ...model,
-    title,
-  })
+      ...model,
+      title,
+    })
+
 
 /** Get the jobType from the given job model. */
-export const getJobType = (model: Model): JobType => model.jobType
+type getJobType = (m: Model) => JobType
+export const getJobType: getJobType
+  = model => model.jobType
+
 
 /** Set the jobType of the given job model. */
-export type SetJobType
+export type setJobType
   =  (v: JobType)
   => (m: Model)
   => Model
-export const setJobType: SetJobType
+export const setJobType: setJobType
   = jobType => model => create({
-    ...model,
-    jobType,
-  })
+      ...model,
+      jobType,
+    })
+
 
 /** Get the postTime from the given job model. */
-export const getPostTime = (model: Model): string => model.postTime
+type getPostTime = (m: Model) => string
+export const getPostTime: getPostTime
+  = model => model.postTime
+
 
 /** Set the postTime of the given job model. */
-export type SetPostTime
+export type setPostTime
   =  (v: string)
   => (m: Model)
   => Model
-export const setPostTime: SetPostTime
+export const setPostTime: setPostTime
   = postTime => model => create({
-    ...model,
-    postTime,
-  })
+      ...model,
+      postTime,
+    })
+
 
 /** Get the id from the given job model. */
-export const getId = (model: Model): string => model.id
+type getId = (m: Model) => string
+export const getId: getId
+  = model => model.id
+
 
 /** Set the id of the given job model. */
-export type SetId
+export type setId
   =  (v: string)
   => (m: Model)
   => Model
-export const setId: SetId
+export const setId: setId
   = id => model => create({
-    ...model,
-    id,
-  })
+      ...model,
+      id,
+    })

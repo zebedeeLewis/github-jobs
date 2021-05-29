@@ -1,10 +1,12 @@
 import * as Job from '@domain/entity/job'
 import * as Redux from 'redux'
 
+
 export type Model = {
   repos: { job: Job.Repo.Repository }
   store: Redux.Store
 }
+
 
 /**
  * Creates a new application model.
@@ -21,30 +23,37 @@ export const create = ({
   repos,
 })
 
+
 /** Get the store from the given state model. */
-export const getStore = (model: Model): Redux.Store =>
-  model.store
+type getStore = (m: Model) => Redux.Store
+export const getStore: getStore
+  = model => model.store
+
 
 /** Set the repo value of the given state model. */
-export type SetStore
+export type setStore
   =  (v: Redux.Store)
   => (s: Model)
   => Model
-export const setStore: SetStore = store => model => ({
-  ...model,
-  store,
-})
+export const setStore: setStore
+  = store => model => ({
+      ...model,
+      store,
+    })
+
 
 /** Get the repos from the given state model. */
-export const getRepos = (model: Model): { job: Job.Repo.Repository } =>
-  model.repos
+type getRepos = (m: Model) => { job: Job.Repo.Repository }
+export const getRepos: getRepos
+  = model => model.repos
+
 
 /** Set the repo value of the given state model. */
-export type SetRepos
+export type setRepos
   =  (v: { job: Job.Repo.Repository })
   => (s: Model)
   => Model
-export const setRepos: SetRepos = repos => model => ({
-  ...model,
-  repos,
-})
+export const setRepos: setRepos = repos => model => ({
+    ...model,
+    repos,
+  })

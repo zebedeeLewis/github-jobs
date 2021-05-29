@@ -9,35 +9,29 @@ export type ApplyFiltersCommand = {
   payload: Job.DAO.Filters
 }
 
+
 /**
  * This command message is used to direct the system to apply the given
  * filters to the job list.
  */
-type applyFilters_s = (f: Job.DAO.Filters) => ApplyFiltersCommand
-export const applyFilters: applyFilters_s
+type applyFilters = (f: Job.DAO.Filters) => ApplyFiltersCommand
+export const applyFilters: applyFilters
   = filters => ({
       type: APPLY_FILTERS,
       payload: filters,
     })
 
-/** Clears all loaded jobs, and set jobs status to loading */
-type clearJobs_s = (s: State.State) => State.Data<Array<Job.Model>>
-export const clearJobs: clearJobs_s
-  = <clearJobs_s>_.compose(
-      State.setJobData([]),
-      State.setJobDataStatus(State.LOADING),
-      State.getJobs
-    )
 
 /** handle the apply filters event message */
-type handleApplyFilters_s
+type handleApplyFilters
   =  (s: State.State)
   => (m: ApplyFiltersCommand)
   => State.State
-export const handleApplyFilters: handleApplyFilters_s
+export const handleApplyFilters: handleApplyFilters
   = state => msg => _.compose(
-      State.setJobs( clearJobs(state) ),
-      State.setCurrentPage(0),
+      State.setJobStatus(State.LOADING),
+      State.setCurrentPage(State.NO_PAGE_LOADED),
+      State.setJobList([]),
       State.setFilters(msg.payload),
     )(state)
 

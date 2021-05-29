@@ -37,6 +37,7 @@ const createMockApiServer = () => {
   })
 }
 
+
 /**
  * Setup the redux store.
  *
@@ -45,12 +46,15 @@ const createMockApiServer = () => {
  *
  * @returns the new redux store.
  */
-const createEnhancedStore = (
-  enhancers: Array<Redux.StoreEnhancer>
-): Redux.Store => Redux.createStore(
-  AppMessage.patch,
-  Redux.compose( ... enhancers )
-)
+type createEnhancedStore
+  = (e: Array<Redux.StoreEnhancer>)
+  => Redux.Store
+const createEnhancedStore: createEnhancedStore
+  = enhancers => Redux.createStore(
+      AppMessage.patch,
+      Redux.compose( ... enhancers )
+    )
+
 
 /**
  * Perform all configuration and setup needed by the application.
@@ -60,27 +64,28 @@ const createEnhancedStore = (
  *
  * @returns a new ui application model.
  */
-const setup = (
-  sagaMiddleware: ReduxSaga.SagaMiddleware
-): UiModel.Model => {
-  /* eslint-disable no-underscore-dangle */
-  const reduxConsoleEnhancer
-    = process.env.NODE_ENV === 'production'
-    ? []
-    : [(window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-       (window as any).__REDUX_DEVTOOLS_EXTENSION__()]
-  /* eslint-enable no-underscore-dangle */
+type setup = (s: ReduxSaga.SagaMiddleware) => UiModel.Model
+const setup: setup
+  = sagaMiddleware => {
+      /* eslint-disable no-underscore-dangle */
+      const reduxConsoleEnhancer
+        = process.env.NODE_ENV === 'production'
+        ? []
+        : [(window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+           (window as any).__REDUX_DEVTOOLS_EXTENSION__()]
+      /* eslint-enable no-underscore-dangle */
+    
+      const store = createEnhancedStore(
+        [ Redux.applyMiddleware(sagaMiddleware)
+        , ... reduxConsoleEnhancer
+        ]
+      )
+    
+      const repos = { job: Job.Repo.create({dao: JobDao.create()}) }
+    
+      return UiModel.create({store, repos})
+    }
 
-  const store = createEnhancedStore(
-    [ Redux.applyMiddleware(sagaMiddleware)
-    , ... reduxConsoleEnhancer
-    ]
-  )
-
-  const repos = { job: Job.Repo.create({dao: JobDao.create()}) }
-
-  return UiModel.create({store, repos})
-}
 
 /**
  * Load the data needed to present the initial user interface.
@@ -88,15 +93,18 @@ const setup = (
  * @param store - the redux store.
  * @returns nothing
  */
-const loadInitialData = (store: Redux.Store) => {
-  store.dispatch(
-    _.compose(
-      AppMessage.loadJobs,
-      AppState.getCurrentPage,
-      store.getState
-    )()
-  )
-}
+type loadInitialData = (s: Redux.Store) => void
+const loadInitialData: loadInitialData
+  = (store: Redux.Store) => {
+      store.dispatch(
+        _.compose(
+          AppMessage.loadJobs,
+          AppState.getCurrentPage,
+          store.getState
+        )()
+      )
+    }
+
 
 /**
  * run the given sagas
@@ -109,9 +117,11 @@ type RunSagas
   =  (s: ReduxSaga.SagaMiddleware)
   => (S: Array<ReduxSaga.Saga>)
   => void
-const runSagas: RunSagas = sagaMiddleware => sagas => {
-  sagas.forEach(sagaMiddleware.run)
-}
+const runSagas: RunSagas
+  = sagaMiddleware => sagas => {
+      sagas.forEach(sagaMiddleware.run)
+    }
+
 
 /**
  * perform all operations that should be completed before starting
@@ -122,20 +132,23 @@ const runSagas: RunSagas = sagaMiddleware => sagas => {
  *
  * @returns nothing
  */
-const preStart = (
-  sagaMiddleware: ReduxSaga.SagaMiddleware,
-  uiModel: UiModel.Model
-) => {
-  createMockApiServer() // Development only or until I build the Api
+type preStart
+  =  (s: ReduxSaga.SagaMiddleware)
+  => (u: UiModel.Model)
+  => void
+const preStart: preStart
+  = sagaMiddleware => uiModel => {
+      createMockApiServer() // Development only or until I build the Api
+    
+      runSagas(sagaMiddleware)([
+        AppInstruction.createLoadJobsSaga(uiModel),
+        AppInstruction.createFilterJobsSaga(uiModel),
+      ])
+    
+      const store = UiModel.getStore(uiModel)
+      loadInitialData(store)
+    }
 
-  runSagas(sagaMiddleware)([
-    AppInstruction.createLoadJobsSaga(uiModel),
-    AppInstruction.createFilterJobsSaga(uiModel),
-  ])
-
-  const store = UiModel.getStore(uiModel)
-  loadInitialData(store)
-}
 
 /**
  * Start the ui app.
@@ -143,16 +156,18 @@ const preStart = (
  * @param store - the redux store
  * @returns nothing
  */
-const start = (store: Redux.Store) => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <ReactRedux.Provider store={store}>
-        <App />
-      </ReactRedux.Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  )
-}
+type start = (s: Redux.Store) => void
+const start: start
+  = store => {
+      ReactDOM.render(
+        <React.StrictMode>
+          <ReactRedux.Provider store={store}>
+            <App />
+          </ReactRedux.Provider>
+        </React.StrictMode>,
+        document.getElementById('root')
+      )
+    }
 
 
 /**
@@ -163,8 +178,9 @@ const run = () => {
   const uiModel = setup(sagaMiddleware)
   const store = UiModel.getStore(uiModel)
 
-  preStart(sagaMiddleware, uiModel)
+  preStart(sagaMiddleware)(uiModel)
   start(store)
 }
+
 
 run()

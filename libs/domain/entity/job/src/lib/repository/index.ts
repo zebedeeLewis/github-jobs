@@ -1,8 +1,6 @@
 import {
   create,
   list,
-  getRepoType,
-  setRepoType,
   getQuery,
   setQuery,
   getDao,
@@ -12,8 +10,6 @@ import {
 export {
   create,
   list,
-  getRepoType,
-  setRepoType,
   getQuery,
   setQuery,
   getDao,
