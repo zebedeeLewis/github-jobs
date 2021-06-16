@@ -1,0 +1,30 @@
+{
+  "npmScope": "job-board",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "job-board": {
+      "tags": []
+    },
+    "job-board-e2e": {
+      "tags": [],
+      "implicitDependencies": ["job-board"]
+    }
+  }
+}
