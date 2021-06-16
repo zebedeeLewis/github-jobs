@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@presentation/job-board/component/app": [
+        "libs/presentation/job-board/component/app/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

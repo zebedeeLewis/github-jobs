@@ -102,6 +102,29 @@
           }
         }
       }
+    },
+    "presentation-job-board-component-app": {
+      "root": "libs/presentation/job-board/component/app",
+      "sourceRoot": "libs/presentation/job-board/component/app/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/presentation/job-board/component/app/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/presentation/job-board/component/app"],
+          "options": {
+            "jestConfig": "libs/presentation/job-board/component/app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

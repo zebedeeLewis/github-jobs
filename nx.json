@@ -25,6 +25,9 @@
     "job-board-e2e": {
       "tags": [],
       "implicitDependencies": ["job-board"]
+    },
+    "presentation-job-board-component-app": {
+      "tags": []
     }
   }
 }
